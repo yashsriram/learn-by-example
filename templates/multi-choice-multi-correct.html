@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>learn by questions</title>
+</head>
+
+<body>
+
+{{ question |  safe }}
+
+<fieldset>
+    <legend>
+        <button onclick="evaluate_answer()">evaluate</button>
+        <button onclick="show_hint()">show hint</button>
+    </legend>
+
+    {% for option in options %}
+    <div>
+        <label><input type="checkbox"> {{ option }}</label>
+    </div>
+    {% endfor %}
+</fieldset>
+
+<p id="feedback" hidden></p>
+
+<div>
+    <p id="hint" hidden>
+    <strong>hint</strong>
+    <br>
+    {{ hint | linebreaksbr | safe }}
+    </p>
+</div>
+
+<div>
+    <button onclick="show_answer()">show answer</button>
+    <p id="answer" hidden>
+        <strong>answer</strong>
+        <br>
+        {{ answer }}
+        <br>
+        {{ explaination | linebreaksbr | safe }}
+    </p>
+</div>
+
+<script>
+    const truth = {{ answer }};
+
+    function evaluate_answer() {
+        const answer = Array.from(document.getElementsByTagName("input")).map(e => e.checked);
+        const feedback = document.getElementById("feedback");
+        for (let i = 0; i < answer.length; ++i) {
+            const is_element_eq = answer[i] === truth[i];
+            if (!is_element_eq) {
+                feedback.innerHTML = "incorrect answer";
+                feedback.hidden = false;
+                return;
+            }
+        }
+        feedback.innerHTML = "correct answer";
+        feedback.hidden = false;
+    }
+
+    function show_hint() {
+        const hint = document.getElementById("hint");
+        hint.hidden = false;
+    }
+
+    function show_answer() {
+        const hint = document.getElementById("answer");
+        hint.hidden = false;
+    }
+</script>
+
+</body>
+</html>
