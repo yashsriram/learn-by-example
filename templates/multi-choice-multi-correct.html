@@ -13,7 +13,7 @@
 <fieldset>
     <legend>
         <button onclick="evaluate_answer()">evaluate</button>
-        <button onclick="show_hint()">show hint</button>
+        <button onclick="show_hint()">hint</button>
     </legend>
 
     {% for option in options %}
@@ -34,7 +34,7 @@
 </div>
 
 <div>
-    <button onclick="show_answer()">show answer</button>
+    <button onclick="show_answer()">reveal</button>
     <p id="answer" hidden>
         <strong>answer</strong>
         <br>
