@@ -9,47 +9,49 @@
 <body>
 
 
-<details>
-    <summary>{{ id }}</summary>
-    <div>
+<fieldset>
+
+{{ prompt | safe }}
+
+<div id="options" class="options">
     <fieldset>
-
-    {{ prompt | safe }}
-
-    <div id="options">
-        <fieldset>
-            {{ options | safe }}
-        </fieldset>
-    </div>
-
-    <button onclick="evaluate_answer()">evaluate</button>
-
-    <button onclick="show_hint()">hint</button>
-
-    <button onclick="show_truth()">reveal</button>
-
-    <p id="feedback" hidden></p>
-
-    <div id="hint" hidden>
-        {{ hint | safe }}
-    </div>
-
-    <div id="truth_and_explaination" hidden>
-        {{ truth | safe }}
-        {{ explaination | safe }}
-    </div>
+        {{ options | safe }}
     </fieldset>
-    </div>
-</details>
+</div>
+
+<button onclick="evaluate_answer()">evaluate</button>
+
+<button onclick="show_hint()">hint</button>
+
+<button onclick="show_truth()">reveal</button>
+
+<p id="feedback" hidden></p>
+
+<div id="hint" hidden>
+    {{ hint | safe }}
+</div>
+
+<div id="truth_and_explaination" hidden>
+    {{ truth | safe }}
+    {{ explaination | safe }}
+</div>
+</fieldset>
 
 
 
 <script>
-    const truth = [false, false, false, false];
+    function init() {
+        document.querySelectorAll("div.options input").forEach(e => { e.disabled = false; });
+    }
+
+    init();
+
+    const truth = {{ truth_values }};
 
     function evaluate_answer() {
-        const answer = Array.from(document.getElementsByTagName("input")).map(e => e.checked);
-        const feedback = document.getElementById("feedback");
+        const inputs = document.querySelectorAll(`#options input`);
+        const answer = Array.from(inputs).map(e => e.checked);
+        const feedback = document.querySelector(`#feedback`);
         for (let i = 0; i < answer.length; ++i) {
             const is_element_eq = answer[i] === truth[i];
             if (!is_element_eq) {
@@ -64,12 +66,12 @@
     }
 
     function show_hint() {
-        const hint = document.getElementById("hint");
+        const hint = document.querySelector("#hint");
         hint.hidden = false;
     }
 
     function show_truth() {
-        const hint = document.getElementById("truth_and_explaination");
+        const hint = document.querySelector("#truth_and_explaination");
         hint.hidden = false;
     }
 </script>

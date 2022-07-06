@@ -28,14 +28,14 @@ fn main() {
             std::process::exit(1);
         })
     });
-    for md_path in md_paths {
+    for (idx, md_path) in md_paths.enumerate() {
         println!("generating html for {:?}", md_path);
         let html_path = {
+            let mut html_path = PathBuf::from(HTML_OUTPUT_DIR);
             let file_name = md_path.file_name().unwrap_or_else(|| {
                 eprintln!("md file name read error(s)");
                 std::process::exit(1);
             });
-            let mut html_path = PathBuf::from(HTML_OUTPUT_DIR);
             html_path.push(&file_name);
             let extension_success = html_path.set_extension("html");
             if !extension_success {
@@ -48,7 +48,7 @@ fn main() {
             eprintln!("md file read error(s): {}", e);
             std::process::exit(1);
         });
-        let mcmcq_html = parse(md_str).unwrap_or_else(|e| {
+        let mcmcq_html = parse(md_str, format!("q{}", idx)).unwrap_or_else(|e| {
             eprintln!("{}", e);
             std::process::exit(1);
         });

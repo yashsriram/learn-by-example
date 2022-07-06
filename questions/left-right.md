@@ -30,15 +30,13 @@ hello [^privacy]
 
 [^privacy]: There are some privacy concerns. It’s easy enough to keep a shopper’s riding data private from the merchant, but to enforce discount limits, the merchant will have to send sales totals to the server, giving the transit agency the ability to collect substantial information about the shopping habits of its riders. There’s no easy way around this, except to put in place a firewall between the agency and the terminal.
 
-It will probably be necessary for a third party to handle the terminal and servers, providing the service to both merchants and transit agencies (otherwise, each transit agency will have to implement support separately). This third party can be regulated to discard shopping history data beyond the discount window.
+This is Peter on ![holiday in Greece](https://en.wikipedia.org/wiki/Google_Images#/media/File:Google_Images_2015_logo.svg).
 
-This is Peter on ![holiday in Greece](pearl_beach.jpg 'this comes up on hover').
-
-# truth
+# options
 - [ ] Always turn left,
 - [ ] Always turn right
 - [x] Direction of __+(c cross t) / (|c| . |t|)__
-- [x] Direction of -(c cross t) / (|c| . |t|)
+- [ ] Direction of -(c cross t) / (|c| . |t|)
 
 # hint
 

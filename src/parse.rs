@@ -3,15 +3,16 @@ use serde::Serialize;
 
 #[derive(Serialize)]
 pub struct MultiChoiceMultiCorrectQuestionHtml {
-    id: usize,
+    id: String,
     prompt: String,
     options: String,
     hint: String,
     truth: String,
     explaination: String,
+    truth_values: Vec<bool>,
 }
 
-pub fn parse(md_str: String) -> Result<MultiChoiceMultiCorrectQuestionHtml, String> {
+pub fn parse(md_str: String, id: String) -> Result<MultiChoiceMultiCorrectQuestionHtml, String> {
     // parse
     let mut md_parse_options = Options::empty();
     md_parse_options.insert(Options::ENABLE_TABLES);
@@ -39,7 +40,7 @@ pub fn parse(md_str: String) -> Result<MultiChoiceMultiCorrectQuestionHtml, Stri
         .collect::<Vec<_>>();
     let required_h1s = vec![
         Event::Text(CowStr::Borrowed("prompt")),
-        Event::Text(CowStr::Borrowed("truth")),
+        Event::Text(CowStr::Borrowed("options")),
         Event::Text(CowStr::Borrowed("hint")),
         Event::Text(CowStr::Borrowed("explaination")),
     ];
@@ -64,12 +65,12 @@ pub fn parse(md_str: String) -> Result<MultiChoiceMultiCorrectQuestionHtml, Stri
         );
         html_str
     };
+    println!("{:?}", &events[truth_range.clone()]);
     let options_html_str = {
         let mut html_str = String::new();
         html::push_html(
             &mut html_str,
             events[truth_range.clone()].iter().map(|event| match event {
-                Event::Text(CowStr::Borrowed("truth")) => Event::Text(CowStr::Borrowed("options")),
                 Event::TaskListMarker(..) => Event::TaskListMarker(false).clone(),
                 _ => event.clone(),
             }),
@@ -88,7 +89,10 @@ pub fn parse(md_str: String) -> Result<MultiChoiceMultiCorrectQuestionHtml, Stri
         let mut html_str = String::new();
         html::push_html(
             &mut html_str,
-            events[truth_range].iter().map(|event| event.clone()),
+            events[truth_range.clone()].iter().map(|event| match event {
+                Event::Text(CowStr::Borrowed("options")) => Event::Text(CowStr::Borrowed("truth")),
+                _ => event.clone(),
+            }),
         );
         html_str
     };
@@ -100,12 +104,20 @@ pub fn parse(md_str: String) -> Result<MultiChoiceMultiCorrectQuestionHtml, Stri
         );
         html_str
     };
+    let truth_values = events[truth_range.clone()]
+        .iter()
+        .filter_map(|event| match event {
+            Event::TaskListMarker(val) => Some(*val),
+            _ => None,
+        })
+        .collect();
     Ok(MultiChoiceMultiCorrectQuestionHtml {
-        id: 1,
+        id,
         prompt: prompt_html_str,
         options: options_html_str,
         hint: hint_html_str,
         truth: truth_html_str,
         explaination: explaination_html_str,
+        truth_values,
     })
 }
