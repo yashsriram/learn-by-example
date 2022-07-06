@@ -1,23 +1,14 @@
 use glob::glob;
-use pulldown_cmark::{html, Options, Parser};
-use serde::Serialize;
 use std::{self, path::PathBuf};
 use tera::Context;
 use tera::Tera;
 
+mod parse;
+use parse::*;
+
 const TEMPLATES_GLOB: &'static str = "templates/*.html";
 const QUESTIONS_GLOB: &'static str = "questions/*.md";
 const HTML_OUTPUT_DIR: &'static str = "docs/";
-
-#[derive(Serialize)]
-struct Question<'a> {
-    id: usize,
-    question: &'a str,
-    options: Vec<&'a str>,
-    answer: Vec<bool>,
-    hint: &'a str,
-    explaination: &'a str,
-}
 
 fn main() {
     let tera = Tera::new(TEMPLATES_GLOB).unwrap_or_else(|e| {
@@ -37,13 +28,6 @@ fn main() {
             std::process::exit(1);
         })
     });
-    let mut md_parse_options = Options::empty();
-    md_parse_options.insert(Options::ENABLE_TABLES);
-    md_parse_options.insert(Options::ENABLE_FOOTNOTES);
-    md_parse_options.insert(Options::ENABLE_STRIKETHROUGH);
-    md_parse_options.insert(Options::ENABLE_TASKLISTS);
-    md_parse_options.insert(Options::ENABLE_SMART_PUNCTUATION);
-    md_parse_options.insert(Options::ENABLE_HEADING_ATTRIBUTES);
     for md_path in md_paths {
         println!("generating html for {:?}", md_path);
         let html_path = {
@@ -64,22 +48,11 @@ fn main() {
             eprintln!("md file read error(s): {}", e);
             std::process::exit(1);
         });
-        let html_str = {
-            let parser = Parser::new_ext(&md_str, md_parse_options);
-            let mut html_str = String::new();
-            html::push_html(&mut html_str, parser);
-            html_str
-        };
-
-        let question = Question {
-            id: 1,
-            question: "so the question is...",
-            options: ["option 1", "option 2"].into(),
-            answer: [true, false].into(),
-            hint: "so the hint is ...",
-            explaination: "so the explaination is ...",
-        };
-        let tera_context = Context::from_serialize(&question).unwrap_or_else(|e| {
+        let mcmcq_html = parse(md_str).unwrap_or_else(|e| {
+            eprintln!("{}", e);
+            std::process::exit(1);
+        });
+        let tera_context = Context::from_serialize(&mcmcq_html).unwrap_or_else(|e| {
             eprintln!("tera context parse error(s): {}", e);
             std::process::exit(1);
         });

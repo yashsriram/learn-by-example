@@ -8,48 +8,100 @@
 
 <body>
 
-so the question is...
 
-<fieldset>
-    <legend>
-        <button onclick="evaluate_answer()">evaluate</button>
-        <button onclick="show_hint()">show hint</button>
-    </legend>
-
-    
+<details>
+    <summary>1</summary>
     <div>
-        <label><input type="checkbox"> option 1</label>
-    </div>
-    
-    <div>
-        <label><input type="checkbox"> option 2</label>
-    </div>
-    
-</fieldset>
+    <fieldset>
 
-<p id="feedback" hidden></p>
-
-<div>
-    <p id="hint" hidden>
-    <strong>hint</strong>
-    <br>
-    so the hint is ...
-    </p>
+    <h1>prompt</h1>
+<p>A <a href="https://en.wikipedia.org/wiki/Differential_wheeled_robot">diff drive :robot:</a> has a orientation unit vector <strong>c</strong> and we want to get to align with orientation unit vector <strong>t</strong>.
+How should robot turn to do this the fastest?</p>
+<p><del>ignore this always</del></p>
+<p>soo… <code>heloo</code></p>
+<blockquote>
+<p>blockquote</p>
+</blockquote>
+<hr />
+<pre><code>let A = B;
+</code></pre>
+<table><thead><tr><th>col 1</th><th>col 2</th></tr></thead><tbody>
+<tr><td>foo</td><td>bar</td></tr>
+<tr><td>foo fasfads</td><td>bar dafadfasd</td></tr>
+</tbody></table>
+<p>hello <sup class="footnote-reference"><a href="#privacy">1</a></sup></p>
+<ul>
+<li><input disabled="" type="checkbox"/>
+A</li>
+<li><input disabled="" type="checkbox"/>
+B</li>
+<li><input disabled="" type="checkbox"/>
+C</li>
+</ul>
+<div class="footnote-definition" id="privacy"><sup class="footnote-definition-label">1</sup>
+<p>There are some privacy concerns. It’s easy enough to keep a shopper’s riding data private from the merchant, but to enforce discount limits, the merchant will have to send sales totals to the server, giving the transit agency the ability to collect substantial information about the shopping habits of its riders. There’s no easy way around this, except to put in place a firewall between the agency and the terminal.</p>
 </div>
+<p>It will probably be necessary for a third party to handle the terminal and servers, providing the service to both merchants and transit agencies (otherwise, each transit agency will have to implement support separately). This third party can be regulated to discard shopping history data beyond the discount window.</p>
+<p>This is Peter on <img src="pearl_beach.jpg" alt="holiday in Greece" title="this comes up on hover" />.</p>
 
-<div>
-    <button onclick="show_answer()">show answer</button>
-    <p id="answer" hidden>
-        <strong>answer</strong>
-        <br>
-        [true, false]
-        <br>
-        so the explaination is ...
-    </p>
-</div>
+
+    <div id="options">
+        <fieldset>
+            <h1>options</h1>
+<ul>
+<li><input disabled="" type="checkbox"/>
+Always turn left,</li>
+<li><input disabled="" type="checkbox"/>
+Always turn right</li>
+<li><input disabled="" type="checkbox"/>
+Direction of <strong>+(c cross t) / (|c| . |t|)</strong></li>
+<li><input disabled="" type="checkbox"/>
+Direction of -(c cross t) / (|c| . |t|)</li>
+</ul>
+
+        </fieldset>
+    </div>
+
+    <button onclick="evaluate_answer()">evaluate</button>
+
+    <button onclick="show_hint()">hint</button>
+
+    <button onclick="show_truth()">reveal</button>
+
+    <p id="feedback" hidden></p>
+
+    <div id="hint" hidden>
+        <h1>hint</h1>
+
+    </div>
+
+    <div id="truth_and_explaination" hidden>
+        <h1>truth</h1>
+<ul>
+<li><input disabled="" type="checkbox"/>
+Always turn left,</li>
+<li><input disabled="" type="checkbox"/>
+Always turn right</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Direction of <strong>+(c cross t) / (|c| . |t|)</strong></li>
+<li><input disabled="" type="checkbox" checked=""/>
+Direction of -(c cross t) / (|c| . |t|)</li>
+</ul>
+
+        <h1>explaination</h1>
+<pre><code>print '3 backticks or'
+print 'indent 4 spaces'
+</code></pre>
+
+    </div>
+    </fieldset>
+    </div>
+</details>
+
+
 
 <script>
-    const truth = [true, false];
+    const truth = [false, false, false, false];
 
     function evaluate_answer() {
         const answer = Array.from(document.getElementsByTagName("input")).map(e => e.checked);
@@ -64,6 +116,7 @@ so the question is...
         }
         feedback.innerHTML = "correct answer";
         feedback.hidden = false;
+        show_truth();
     }
 
     function show_hint() {
@@ -71,8 +124,8 @@ so the question is...
         hint.hidden = false;
     }
 
-    function show_answer() {
-        const hint = document.getElementById("answer");
+    function show_truth() {
+        const hint = document.getElementById("truth_and_explaination");
         hint.hidden = false;
     }
 </script>

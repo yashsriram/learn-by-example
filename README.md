@@ -10,17 +10,15 @@
 - projects `journal` and `effortless` - directed acyclic graph of statements + scratch page. too much structure.
 - project `learn-by-questions` - answer the question. maybe just right.
 
-# features
-- formats
-    - multi choice multi correct questions.
-    - match the following.
-    - fill in the blanks.
-- fast writes of questions from PR + CI/CD / web.
+# goals
+- fast writes of questions from, PR + CI/CD, web form (which creates a PR).
 - fast reads from code / web.
-- common mark storage; readable than json, yaml, toml, xml in native form on github. [strong specification](https://commonmark.org/).
-- html + js; static page serving, no server.
+- multi choice multi correct questions.
+- [common mark](https://commonmark.org/) + (tasklist, tables, footnotes, strikethrough, smart punctuation) storage; readable than json, yaml, toml, xml in native form especially on github.
+- html + js; static page serving, no server, while keeping keeping html + js to minimum.
 - urls for questions, easy sharing.
 - make quiz from search.
+- link to git blamed github markdown page.
 
 # approaches
 - :cross: rocket

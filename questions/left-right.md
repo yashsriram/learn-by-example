@@ -1,10 +1,15 @@
-# question
+# prompt
 A [diff drive :robot:](https://en.wikipedia.org/wiki/Differential_wheeled_robot) has a orientation unit vector __c__ and we want to get to align with orientation unit vector __t__.
 How should robot turn to do this the fastest?
 
 ~~ignore this always~~
 
 soo... `heloo`
+
+> blockquote
+
+---
+
 
 ```
 let A = B;
@@ -27,9 +32,9 @@ hello [^privacy]
 
 It will probably be necessary for a third party to handle the terminal and servers, providing the service to both merchants and transit agencies (otherwise, each transit agency will have to implement support separately). This third party can be regulated to discard shopping history data beyond the discount window.
 
-This is Peter on ![holiday in Greece](pearl_beach.jpg \"abc\").
+This is Peter on ![holiday in Greece](pearl_beach.jpg 'this comes up on hover').
 
-# options
+# truth
 - [ ] Always turn left,
 - [ ] Always turn right
 - [x] Direction of __+(c cross t) / (|c| . |t|)__
@@ -39,10 +44,6 @@ This is Peter on ![holiday in Greece](pearl_beach.jpg \"abc\").
 
 # explaination   
 ```
-# code block
 print '3 backticks or'
 print 'indent 4 spaces'
 ```
-
-# template
-"multi-choice-multi-correct.html"

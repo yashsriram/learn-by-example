@@ -8,44 +8,44 @@
 
 <body>
 
-{{ question |  safe }}
 
-<fieldset>
-    <legend>
-        <button onclick="evaluate_answer()">evaluate</button>
-        <button onclick="show_hint()">hint</button>
-    </legend>
-
-    {% for option in options %}
+<details>
+    <summary>{{ id }}</summary>
     <div>
-        <label><input type="checkbox"> {{ option }}</label>
+    <fieldset>
+
+    {{ prompt | safe }}
+
+    <div id="options">
+        <fieldset>
+            {{ options | safe }}
+        </fieldset>
     </div>
-    {% endfor %}
-</fieldset>
 
-<p id="feedback" hidden></p>
+    <button onclick="evaluate_answer()">evaluate</button>
 
-<div>
-    <p id="hint" hidden>
-    <strong>hint</strong>
-    <br>
-    {{ hint | linebreaksbr | safe }}
-    </p>
-</div>
+    <button onclick="show_hint()">hint</button>
 
-<div>
-    <button onclick="show_answer()">reveal</button>
-    <p id="answer" hidden>
-        <strong>answer</strong>
-        <br>
-        {{ answer }}
-        <br>
-        {{ explaination | linebreaksbr | safe }}
-    </p>
-</div>
+    <button onclick="show_truth()">reveal</button>
+
+    <p id="feedback" hidden></p>
+
+    <div id="hint" hidden>
+        {{ hint | safe }}
+    </div>
+
+    <div id="truth_and_explaination" hidden>
+        {{ truth | safe }}
+        {{ explaination | safe }}
+    </div>
+    </fieldset>
+    </div>
+</details>
+
+
 
 <script>
-    const truth = {{ answer }};
+    const truth = [false, false, false, false];
 
     function evaluate_answer() {
         const answer = Array.from(document.getElementsByTagName("input")).map(e => e.checked);
@@ -60,6 +60,7 @@
         }
         feedback.innerHTML = "correct answer";
         feedback.hidden = false;
+        show_truth();
     }
 
     function show_hint() {
@@ -67,8 +68,8 @@
         hint.hidden = false;
     }
 
-    function show_answer() {
-        const hint = document.getElementById("answer");
+    function show_truth() {
+        const hint = document.getElementById("truth_and_explaination");
         hint.hidden = false;
     }
 </script>
