@@ -28,7 +28,7 @@ fn main() {
             std::process::exit(1);
         })
     });
-    for (idx, md_path) in md_paths.enumerate() {
+    for md_path in md_paths {
         println!("generating html for {:?}", md_path);
         let html_path = {
             let mut html_path = PathBuf::from(HTML_OUTPUT_DIR);
@@ -48,7 +48,7 @@ fn main() {
             eprintln!("md file read error(s): {}", e);
             std::process::exit(1);
         });
-        let mcmcq_html = parse(md_str, format!("q{}", idx)).unwrap_or_else(|e| {
+        let mcmcq_html = parse(md_str).unwrap_or_else(|e| {
             eprintln!("{}", e);
             std::process::exit(1);
         });

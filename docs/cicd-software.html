@@ -11,11 +11,24 @@
 
 <fieldset>
 
-{{ prompt | safe }}
+<h1>prompt</h1>
+<p>What is our CI/CD software?</p>
+
 
 <div id="options">
     <fieldset>
-        {{ options | safe }}
+        <h1>options</h1>
+<ul>
+<li><input disabled="" type="checkbox"/>
+Github actions</li>
+<li><input disabled="" type="checkbox"/>
+Jenkins</li>
+<li><input disabled="" type="checkbox"/>
+Graphana</li>
+<li><input disabled="" type="checkbox"/>
+Logz.io</li>
+</ul>
+
     </fieldset>
 </div>
 
@@ -28,12 +41,25 @@
 <p id="feedback" hidden></p>
 
 <div id="hint" hidden>
-    {{ hint | safe }}
+    <h1>hint</h1>
+
 </div>
 
 <div id="truth_and_explaination" hidden>
-    {{ truth | safe }}
-    {{ explaination | safe }}
+    <h1>truth</h1>
+<ul>
+<li><input disabled="" type="checkbox"/>
+Github actions</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Jenkins</li>
+<li><input disabled="" type="checkbox"/>
+Graphana</li>
+<li><input disabled="" type="checkbox"/>
+Logz.io</li>
+</ul>
+
+    <h1>explaination</h1>
+
 </div>
 </fieldset>
 
@@ -46,7 +72,7 @@
 
     init();
 
-    const truth = {{ truth_values }};
+    const truth = [false, true, false, false];
 
     function evaluate_answer() {
         const inputs = document.querySelectorAll(`#options input`);

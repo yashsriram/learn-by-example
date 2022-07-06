@@ -2,7 +2,7 @@
 name = "learn-by-questions"
 version = "0.0.0"
 edition = "2021"
-author = "Yashasvi Sriram Patkuri <yash.3997@gmail.com>"
+authors = ["Yashasvi Sriram Patkuri <yash.3997@gmail.com>"]
 
 [dependencies]
 pulldown-cmark = "0.9.1"

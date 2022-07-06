@@ -41,7 +41,7 @@ C</li>
 <p>This is Peter on <img src="https://en.wikipedia.org/wiki/Google_Images#/media/File:Google_Images_2015_logo.svg" alt="holiday in Greece" />.</p>
 
 
-<div id="options" class="options">
+<div id="options">
     <fieldset>
         <h1>options</h1>
 <ul>
@@ -96,7 +96,7 @@ print 'indent 4 spaces'
 
 <script>
     function init() {
-        document.querySelectorAll("div.options input").forEach(e => { e.disabled = false; });
+        document.querySelectorAll("div#options input").forEach(e => { e.disabled = false; });
     }
 
     init();

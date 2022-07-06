@@ -1,9 +1,8 @@
 use pulldown_cmark::{html, CowStr, Event, HeadingLevel, Options, Parser, Tag};
 use serde::Serialize;
 
-#[derive(Serialize)]
+#[derive(Serialize, Debug)]
 pub struct MultiChoiceMultiCorrectQuestionHtml {
-    id: String,
     prompt: String,
     options: String,
     hint: String,
@@ -12,7 +11,7 @@ pub struct MultiChoiceMultiCorrectQuestionHtml {
     truth_values: Vec<bool>,
 }
 
-pub fn parse(md_str: String, id: String) -> Result<MultiChoiceMultiCorrectQuestionHtml, String> {
+pub fn parse(md_string: String) -> Result<MultiChoiceMultiCorrectQuestionHtml, String> {
     // parse
     let mut md_parse_options = Options::empty();
     md_parse_options.insert(Options::ENABLE_TABLES);
@@ -21,8 +20,9 @@ pub fn parse(md_str: String, id: String) -> Result<MultiChoiceMultiCorrectQuesti
     md_parse_options.insert(Options::ENABLE_TASKLISTS);
     md_parse_options.insert(Options::ENABLE_SMART_PUNCTUATION);
     md_parse_options.insert(Options::ENABLE_HEADING_ATTRIBUTES);
-    let parser = Parser::new_ext(&md_str, md_parse_options);
+    let parser = Parser::new_ext(&md_string, md_parse_options);
     let events: Vec<_> = parser.collect();
+    println!("{:?}", events);
     // h1s
     let h1_start_idxes: Vec<_> = events
         .iter()
@@ -57,52 +57,52 @@ pub fn parse(md_str: String, id: String) -> Result<MultiChoiceMultiCorrectQuesti
     let truth_range = h1_start_idxes[1]..h1_start_idxes[2];
     let explaination_range = h1_start_idxes[3]..;
     // parsed -> html string
-    let prompt_html_str = {
-        let mut html_str = String::new();
+    let prompt_html_string = {
+        let mut html_string = String::new();
         html::push_html(
-            &mut html_str,
+            &mut html_string,
             events[prompt_range].iter().map(|event| event.clone()),
         );
-        html_str
+        html_string
     };
     println!("{:?}", &events[truth_range.clone()]);
-    let options_html_str = {
-        let mut html_str = String::new();
+    let options_html_string = {
+        let mut html_string = String::new();
         html::push_html(
-            &mut html_str,
+            &mut html_string,
             events[truth_range.clone()].iter().map(|event| match event {
                 Event::TaskListMarker(..) => Event::TaskListMarker(false).clone(),
                 _ => event.clone(),
             }),
         );
-        html_str
+        html_string
     };
-    let hint_html_str = {
-        let mut html_str = String::new();
+    let hint_html_string = {
+        let mut html_string = String::new();
         html::push_html(
-            &mut html_str,
+            &mut html_string,
             events[hint_range].iter().map(|event| event.clone()),
         );
-        html_str
+        html_string
     };
-    let truth_html_str = {
-        let mut html_str = String::new();
+    let truth_html_string = {
+        let mut html_string = String::new();
         html::push_html(
-            &mut html_str,
+            &mut html_string,
             events[truth_range.clone()].iter().map(|event| match event {
                 Event::Text(CowStr::Borrowed("options")) => Event::Text(CowStr::Borrowed("truth")),
                 _ => event.clone(),
             }),
         );
-        html_str
+        html_string
     };
-    let explaination_html_str = {
-        let mut html_str = String::new();
+    let explaination_html_string = {
+        let mut html_string = String::new();
         html::push_html(
-            &mut html_str,
+            &mut html_string,
             events[explaination_range].iter().map(|event| event.clone()),
         );
-        html_str
+        html_string
     };
     let truth_values = events[truth_range.clone()]
         .iter()
@@ -112,12 +112,108 @@ pub fn parse(md_str: String, id: String) -> Result<MultiChoiceMultiCorrectQuesti
         })
         .collect();
     Ok(MultiChoiceMultiCorrectQuestionHtml {
-        id,
-        prompt: prompt_html_str,
-        options: options_html_str,
-        hint: hint_html_str,
-        truth: truth_html_str,
-        explaination: explaination_html_str,
+        prompt: prompt_html_string,
+        options: options_html_string,
+        hint: hint_html_string,
+        truth: truth_html_string,
+        explaination: explaination_html_string,
         truth_values,
     })
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn good1() {
+        let md_string = "
+# prompt
+what is 2 + 2?
+
+# options
+- [x] 4.
+- [x] 2 x 2.
+- [ ] 3.
+- [x] -2 x -2.
+
+# hint
+
+# explaination
+"
+        .to_string();
+        assert!(parse(md_string).is_ok());
+    }
+
+    #[test]
+    fn good2() {
+        let md_string = "
+# prompt
+what is 2 + 2?
+
+# options
+- [x] 4.
+- [x] 2 x 2.
+- [ ] 3.
+- [x] -2 x -2.
+"
+        .to_string();
+        assert!(parse(md_string).is_ok());
+    }
+
+    #[test]
+    #[should_panic]
+    fn bad1() {
+        let md_string = "
+# prompt
+what is 2 + 2?
+"
+        .to_string();
+        assert!(parse(md_string).is_ok());
+    }
+
+    #[test]
+    #[should_panic]
+    fn bad2() {
+        let md_string = "
+# options
+- [x] 4.
+- [x] 2 x 2.
+- [ ] 3.
+- [x] -2 x -2.
+"
+        .to_string();
+        assert!(parse(md_string).is_ok());
+    }
+
+    #[test]
+    #[should_panic]
+    fn bad3() {
+        let md_string = "
+# prompt
+what is 2 + 2?
+
+# options
+"
+        .to_string();
+        assert!(parse(md_string).is_ok());
+    }
+
+    #[test]
+    #[should_panic]
+    fn bad4() {
+        let md_string = "
+# prompt
+what is 2 + 2?
+
+# options
+- [x] 4.
+- [x] 2 x 2.
+some non task list content
+- [ ] 3.
+- [x] -2 x -2.
+"
+        .to_string();
+        assert!(parse(md_string).is_ok());
+    }
 }
