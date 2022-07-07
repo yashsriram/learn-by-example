@@ -62,6 +62,19 @@ pub fn parse(md_string: String) -> Result<MultiChoiceMultiCorrectQuestionHtml, S
         html_string
     };
     let truth_range = h1_start_idxes[1]..h1_start_idxes[2];
+    let number_of_options = events[truth_range.clone()]
+        .iter()
+        .filter(|event| match event {
+            Event::TaskListMarker(..) => true,
+            _ => false,
+        })
+        .count();
+    if number_of_options < 2 {
+        return Err(format!(
+            "required min of 2 options, found {}",
+            number_of_options,
+        ));
+    }
     let options_html_string = {
         let mut html_string = String::new();
         html::push_html(
