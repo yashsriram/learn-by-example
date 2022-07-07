@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>learn by questions</title>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script type="text/javascript">
+    window.MathJax = {
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+    };
+    </script>
+</head>
+
+<body>
+
+
+<fieldset>
+
+<h1>prompt</h1>
+<p>What kind of sensors are used for creating maps on Gen2 scrubbers?</p>
+
+
+<div id="options">
+    <fieldset>
+        <h1>select all true (multiple or zero can be true)</h1>
+<ul>
+<li><input disabled="" type="checkbox"/>
+Slanted lidar.</li>
+<li><input disabled="" type="checkbox"/>
+Planar lidar.</li>
+<li><input disabled="" type="checkbox"/>
+Front camera.</li>
+<li><input disabled="" type="checkbox"/>
+Side camera.</li>
+<li><input disabled="" type="checkbox"/>
+Front IFM.</li>
+<li><input disabled="" type="checkbox"/>
+Side IFM.</li>
+<li><input disabled="" type="checkbox"/>
+Odometer.</li>
+<li><input disabled="" type="checkbox"/>
+Magnetometer.</li>
+<li><input disabled="" type="checkbox"/>
+Gyro.</li>
+</ul>
+
+    </fieldset>
+</div>
+
+<button onclick="evaluate_answer()">evaluate</button>
+
+<button onclick="show_hint()">hint</button>
+
+<button onclick="show_truth()">reveal</button>
+
+<h1 id="feedback" hidden></h1>
+
+<div id="hint" hidden>
+    <h1>hint</h1>
+<p>go through the code</p>
+
+</div>
+
+<div id="truth_and_explaination" hidden>
+    <h1>truth</h1>
+<ul>
+<li><input disabled="" type="checkbox"/>
+Slanted lidar.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Planar lidar.</li>
+<li><input disabled="" type="checkbox"/>
+Front camera.</li>
+<li><input disabled="" type="checkbox"/>
+Side camera.</li>
+<li><input disabled="" type="checkbox"/>
+Front IFM.</li>
+<li><input disabled="" type="checkbox"/>
+Side IFM.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Odometer.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Magnetometer.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Gyro.</li>
+</ul>
+
+    <h1>explaination</h1>
+<p>Cameras and IFMs are not used while mapping.</p>
+<p>Even slanted lidar is not used while mapping.</p>
+
+</div>
+</fieldset>
+
+
+
+<script>
+    function init() {
+        document.querySelectorAll("div#options input").forEach(e => { e.disabled = false; });
+    }
+
+    init();
+
+    const truth = [false, true, false, false, false, false, true, true, true];
+
+    function evaluate_answer() {
+        const inputs = document.querySelectorAll(`#options input`);
+        const answer = Array.from(inputs).map(e => e.checked);
+        const feedback = document.querySelector(`#feedback`);
+        for (let i = 0; i < answer.length; ++i) {
+            const is_element_eq = answer[i] === truth[i];
+            if (!is_element_eq) {
+                feedback.innerHTML = "incorrect answer";
+                feedback.hidden = false;
+                return;
+            }
+        }
+        feedback.innerHTML = "correct answer";
+        feedback.hidden = false;
+        show_truth();
+    }
+
+    function show_hint() {
+        const hint = document.querySelector("#hint");
+        hint.hidden = false;
+    }
+
+    function show_truth() {
+        const hint = document.querySelector("#truth_and_explaination");
+        hint.hidden = false;
+    }
+</script>
+
+</body>
+</html>
