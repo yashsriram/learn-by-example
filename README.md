@@ -17,7 +17,7 @@
 - learn by answering concrete questions :point_right: brain is working out
 - learn by reading documents :point_right: brain is eating and digesting.
 - do not mug up; engage and exercise your brain :point_right: answer questions.
-- answering questions gives feedback, which reading lacks.
+- quiz gives feedback, which reading lacks.
 
 # the goals
 - Lean quiz tool.
@@ -35,7 +35,7 @@
     - gives feedback!
     - there is no best format, remember learning happens inside student's head not outside in a quiz software but this format is missing in brain corp.
 - 🤔 how can i solve multiple good questions fast?
-- WIP, permalinks based grouping...
+- 🙋 WIP, permalinks based grouping...
 
 # conisdered approaches and final design
 - ❌ [rocket](https://rocket.rs/); server not needed
