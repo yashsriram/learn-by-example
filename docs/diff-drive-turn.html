@@ -27,7 +27,7 @@
 
 
 <div id="options">
-    <fieldset>
+    <fieldset><label>multiple/zero can be true</label>
         <h1>options</h1>
 <ul>
 <li><input disabled="" type="checkbox"/>
@@ -65,7 +65,7 @@ Always turn left,</li>
 Always turn right</li>
 <li><input disabled="" type="checkbox" checked=""/>
 Direction of $+\frac{(c \times t)}{|c| . |t|}$</li>
-<li><input disabled="" type="checkbox" checked=""/>
+<li><input disabled="" type="checkbox"/>
 Direction of $-\frac{(c \times t)}{|c| . |t|}$</li>
 </ul>
 
@@ -83,7 +83,7 @@ Direction of $-\frac{(c \times t)}{|c| . |t|}$</li>
 
     init();
 
-    const truth = [false, false, true, true];
+    const truth = [false, false, true, false];
 
     function evaluate_answer() {
         const inputs = document.querySelectorAll(`#options input`);
