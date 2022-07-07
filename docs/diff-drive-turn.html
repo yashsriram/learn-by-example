@@ -21,7 +21,9 @@
 <fieldset>
 
 <h1>prompt</h1>
-<p>What is our CI/CD software?</p>
+<p>A <a href="https://en.wikipedia.org/wiki/Differential_wheeled_robot">diff drive robot</a> has a orientation unit vector <strong>c</strong>.</p>
+<p>We want to align it with orientation unit vector <strong>t</strong>.</p>
+<p>How should robot turn to do this the fastest?</p>
 
 
 <div id="options">
@@ -29,13 +31,13 @@
         <h1>options</h1>
 <ul>
 <li><input disabled="" type="checkbox"/>
-Github actions</li>
+Always turn left,</li>
 <li><input disabled="" type="checkbox"/>
-Jenkins</li>
+Always turn right</li>
 <li><input disabled="" type="checkbox"/>
-Graphana</li>
+Direction of $+\frac{(c \times t)}{|c| . |t|}$</li>
 <li><input disabled="" type="checkbox"/>
-Logz.io</li>
+Direction of $-\frac{(c \times t)}{|c| . |t|}$</li>
 </ul>
 
     </fieldset>
@@ -58,13 +60,13 @@ Logz.io</li>
     <h1>truth</h1>
 <ul>
 <li><input disabled="" type="checkbox"/>
-Github actions</li>
+Always turn left,</li>
+<li><input disabled="" type="checkbox"/>
+Always turn right</li>
 <li><input disabled="" type="checkbox" checked=""/>
-Jenkins</li>
-<li><input disabled="" type="checkbox"/>
-Graphana</li>
-<li><input disabled="" type="checkbox"/>
-Logz.io</li>
+Direction of $+\frac{(c \times t)}{|c| . |t|}$</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Direction of $-\frac{(c \times t)}{|c| . |t|}$</li>
 </ul>
 
     <h1>explaination</h1>
@@ -81,7 +83,7 @@ Logz.io</li>
 
     init();
 
-    const truth = [false, true, false, false];
+    const truth = [false, false, true, true];
 
     function evaluate_answer() {
         const inputs = document.querySelectorAll(`#options input`);

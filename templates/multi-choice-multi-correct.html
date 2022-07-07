@@ -2,8 +2,17 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <title>learn by questions</title>
+    <meta charset="utf-8">
+    <title>learn by questions</title>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script type="text/javascript">
+    window.MathJax = {
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+    };
+    </script>
 </head>
 
 <body>
@@ -25,7 +34,7 @@
 
 <button onclick="show_truth()">reveal</button>
 
-<p id="feedback" hidden></p>
+<h1 id="feedback" hidden></h1>
 
 <div id="hint" hidden>
     {{ hint | safe }}
