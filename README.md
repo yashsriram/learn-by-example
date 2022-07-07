@@ -8,9 +8,10 @@
 # history
 - project `schoolbag` - heihrarchical plain text. too less structure.
 - projects `journal` and `effortless` - directed acyclic graph of statements + scratch page. too much structure.
-- <https://braincorporation.atlassian.net/wiki/spaces/BPD/pages/2101018708/Effortless+knowledge+transfer>
-- <https://github.com/braincorp/shining_software/pull/21268>
-- <https://github.com/braincorp/tsg>
+- other forms of knowledge transfer thought/tried
+    - ![forms_of_knowledge_transfer](https://user-images.githubusercontent.com/18350119/177690705-90c4a402-9234-4daf-82b6-38e8867b444e.png)
+    - ![cv2_vis](https://user-images.githubusercontent.com/18350119/177690941-96514084-1b95-4462-95bf-45228022fc53.png)
+    - ![tui_vis](https://user-images.githubusercontent.com/18350119/177690944-e9c2f2b3-fb56-4613-a72b-f5fd0d1e235a.png)
 - project `learn-by-questions` - answer the question. maybe just right.
 
 # goals
