@@ -8,9 +8,9 @@
 - this is not my first attempt at knowledge transfer.
 - [schoolbag](https://github.com/yashsriram/compost/tree/master/SchoolBag) - heihrarchical plain text. too less structure.
 - [journal](https://github.com/yashsriram/effortless/tree/master/deprecated) and [effortless](https://github.com/yashsriram/effortless) - directed acyclic graph of statements + scratch page. too much structure.
-- __learn-by-example__ - answer the question. maybe just right.
 - [some forms of knowledge transfer in the company vs better forms](https://user-images.githubusercontent.com/18350119/177690705-90c4a402-9234-4daf-82b6-38e8867b444e.png) thought about.
 - visualization tools ([graphic](https://user-images.githubusercontent.com/18350119/177690941-96514084-1b95-4462-95bf-45228022fc53.png) / [text](https://user-images.githubusercontent.com/18350119/177690944-e9c2f2b3-fb56-4613-a72b-f5fd0d1e235a.png)).
+- __learn-by-example__ - answer the question. maybe just right.
 
 # the solution abstract
 - learning happens by [what happens in the mind](https://youtu.be/rhgwIhB58PA) of the student more than what is happening in front of them.
