@@ -17,7 +17,7 @@
 - learn by answering concrete questions :point_right: brain is working out
 - learn by reading documents :point_right: brain is eating and digesting.
 - do not mug up; engage and exercise your brain :point_right: answer questions.
-- answering questions gives feedback, which reading lacks.
+- quiz gives feedback, which reading lacks.
 
 # the goals
 - Lean quiz tool.
