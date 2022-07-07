@@ -9,7 +9,7 @@ How should robot turn to do this the fastest?
 - [ ] Always turn left,
 - [ ] Always turn right
 - [x] Direction of $+\frac{(c \times t)}{|c| . |t|}$
-- [x] Direction of $-\frac{(c \times t)}{|c| . |t|}$
+- [ ] Direction of $-\frac{(c \times t)}{|c| . |t|}$
 
 # hint
 
