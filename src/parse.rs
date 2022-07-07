@@ -80,6 +80,9 @@ pub fn parse(md_string: String) -> Result<MultiChoiceMultiCorrectQuestionHtml, S
         html::push_html(
             &mut html_string,
             events[truth_range.clone()].iter().map(|event| match event {
+                Event::Text(CowStr::Borrowed("options")) => Event::Text(CowStr::Borrowed(
+                    "select all true (multiple or zero can be true)",
+                )),
                 Event::TaskListMarker(..) => Event::TaskListMarker(false).clone(),
                 _ => event.clone(),
             }),
