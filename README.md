@@ -22,13 +22,17 @@
 # the goals
 <details>
     <summary>Before reading further, try to answer <a href="https://yashsriram.github.io/learn-by-example/how-to-use">this question</a> to understand this tool and compare that with reading the text</summary>
-- Lean quiz tool.
-- Quick to contribute, quick to use.
-    - Write question and its answer in markdown, readable in github by itself.
-    - CI/CD will gently guide you in case of any problems.
-    - If everthing okay you get a URL for your question that you can share.
-    - Answer in browser.
-    - Get authors from git blame.
+<ul>
+<li>Lean quiz tool.</li>
+<li>Quick to contribute, quick to use</li>
+    <ul>
+    <li>Write question and its answer in markdown, readable in github by itself.</li>
+    <li>CI/CD will gently guide you in case of any problems.</li>
+    <li>If everthing okay you get a URL for your question that you can share.</li>
+    <li>Answer in browser.</li>
+    <li>Get authors from git blame.</li>
+    </ul>
+</ul>
 </details>
 
 
