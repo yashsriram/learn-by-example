@@ -21,7 +21,7 @@
 
 # the goals
 <details>
-    <summary>Before reading further, try to answer [this question](https://yashsriram.github.io/learn-by-questions/how-to-use) to understand this tool and compare that with reading the text</summary>
+    <summary>Before reading further, try to answer <a href="https://yashsriram.github.io/learn-by-example/how-to-use">this question</a> to understand this tool and compare that with reading the text</summary>
 - Lean quiz tool.
 - Quick to contribute, quick to use.
     - Write question and its answer in markdown, readable in github by itself.
