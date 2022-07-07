@@ -53,4 +53,6 @@ Only people with access to the repo (and therefore its github pages) can access 
 
 Nope! You can [learn common mark in under 60 seconds here](https://commonmark.org/).
 
-You donot need to read html ever, all questions are stored as markdown which you can read in github itself.
+You donot need to read html ever, all questions are stored as markdown which you can read in github itself. For ex
+
+![md_question](https://user-images.githubusercontent.com/18350119/177879528-7c896c4c-29d6-43fc-b425-62686acf81ee.png)
