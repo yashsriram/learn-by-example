@@ -1,16 +1,17 @@
-# description
+# abstract
 - learning happens by what happens in the mind of the student more than what is happening in front of them. <https://youtu.be/rhgwIhB58PA>
-- learn by answering concrete questions (brain is working out) instead of reading abstract theory and solutions (brain is eating and digesting).
+- learn by answering concrete questions :point_right: brain is working out
+- reading abstract theory and solutions :point_right: brain is eating and digesting.
 - do not mug up, engage and exercise your brain.
 - answering questions gives a sense of feedback which reading lacks.
 - brush up more efficiently before interviews.
 
-# history
-- project `schoolbag` - heihrarchical plain text. too less structure.
-- projects `journal` and `effortless` - directed acyclic graph of statements + scratch page. too much structure.
+# previous work
+- [schoolbag](https://github.com/yashsriram/compost/tree/master/SchoolBag) - heihrarchical plain text. too less structure.
+- [journal](https://github.com/yashsriram/effortless/tree/master/deprecated) and [effortless](https://github.com/yashsriram/effortless) - directed acyclic graph of statements + scratch page. too much structure.
 - other [forms of knowledge transfer](https://user-images.githubusercontent.com/18350119/177690705-90c4a402-9234-4daf-82b6-38e8867b444e.png) thought about.
 - even visualizations ([graphic](https://user-images.githubusercontent.com/18350119/177690941-96514084-1b95-4462-95bf-45228022fc53.png) / [text](https://user-images.githubusercontent.com/18350119/177690944-e9c2f2b3-fb56-4613-a72b-f5fd0d1e235a.png)) are not very engaging
-- project `learn-by-questions` - answer the question. maybe just right.
+- __learn-by-questions__ - answer the question. maybe just right.
 
 # goals
 - how do i learn something? (solve problems)
@@ -29,13 +30,13 @@
 - permalinks for easy sharing.
 
 # maintainance
-- [common mark](https://commonmark.org/) + (tasklist, tables, footnotes, strikethrough, smart punctuation) storage; readable than json, yaml, toml, xml in native form especially on github.
+- [common mark](https://commonmark.org/) + [tasklist, tables, footnotes, strikethrough, smart punctuation] storage; more readable than json, yaml, toml, xml in native form especially on github.
 - html + js; static page serving, no server, while keeping keeping html + js to minimum.
 
 # conisdered approaches
-- :cross: rocket; server not needed
-- :cross: zola; framework too restrictive and bloated for our purpose
-- :check: pulldown-cmark; used by [mdbook](https://rust-lang.github.io/mdBook/), right for the purpose
+- :x: rocket; server not needed
+- :x: zola; framework too restrictive and bloated for our purpose
+- :heavy_check_mark: pulldown-cmark; used by [mdbook](https://rust-lang.github.io/mdBook/), right for the purpose
     - `md files`
     - --(foreach read)--> `string`
     - --(parse)--> `md datastructure`
