@@ -1,6 +1,7 @@
 # abstract
 - learning happens by what happens in the mind of the student more than what is happening in front of them. <https://youtu.be/rhgwIhB58PA>
-- learn by answering concrete questions (brain is working out) instead of reading abstract theory and solutions (brain is eating and digesting).
+- learn by answering concrete questions :point_right: brain is working out
+- reading abstract theory and solutions :point_right: brain is eating and digesting.
 - do not mug up, engage and exercise your brain.
 - answering questions gives a sense of feedback which reading lacks.
 - brush up more efficiently before interviews.
