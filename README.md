@@ -35,7 +35,7 @@
     - gives feedback!
     - there is no best format, remember learning happens inside student's head not outside in a quiz software but this format is missing in brain corp.
 - 🤔 how can i solve multiple good questions fast?
-- WIP, permalinks based grouping...
+- 🙋 WIP, permalinks based grouping...
 
 # conisdered approaches and final design
 - ❌ [rocket](https://rocket.rs/); server not needed
