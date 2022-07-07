@@ -20,6 +20,8 @@
 - quiz gives feedback, which reading lacks.
 
 # the goals
+<details>
+    <summary>Before reading further, try to answer [this question](https://yashsriram.github.io/learn-by-questions/how-to-use) to understand this tool and compare that with reading the text</summary>
 - Lean quiz tool.
 - Quick to contribute, quick to use.
     - Write question and its answer in markdown, readable in github by itself.
@@ -27,6 +29,8 @@
     - If everthing okay you get a URL for your question that you can share.
     - Answer in browser.
     - Get authors from git blame.
+</details>
+
 
 # faqs
 - 🤔 multi choice multi correct questions. why this format?
