@@ -20,23 +20,22 @@
 - answering questions gives feedback, which reading lacks.
 
 # the goals
-- 🤔 what does this do?
-- 🙋 lets you answer concrete questions and get feedback, imagine answering 5 questions and learning from the mistakes instead reading 5 pages.
+- Lean quiz tool.
+- Quick to contribute, quick to use.
+    - Write question and its answer in markdown, readable in github by itself.
+    - CI/CD will gently guide you in case of any problems.
+    - If everthing okay you get a URL for your question that you can share.
+    - Answer in browser.
+    - Get authors from git blame.
+
+# faqs
 - 🤔 multi choice multi correct questions. why this format?
 - 🙋
     - simple, fast and fun to write/validate/read questions, evaluate answers, implement and maintain
     - gives feedback!
     - there is no best format, remember learning happens inside student's head not outside in a quiz software but this format is missing in brain corp.
-- 🤔 how can i write down a good question fast i got quickly?
-- 🙋 write a markdown file as a PR (can do in browser itself), CI/CD will gently guide you in case of any problems. if everthing okay you get a URL for your question that you can share.
-- 🤔 how can i solve a good question fast?
-- 🙋 each question gets a URL , answer it in your browser.
 - 🤔 how can i solve multiple good questions fast?
 - WIP, permalinks based grouping...
-- 🤔 how can i read questions and their answers fast?
-- 🙋 markdown from github
-- 🤔 how can i know the author of a question fast?
-- 🙋 git blame
 
 # conisdered approaches and final design
 - ❌ [rocket](https://rocket.rs/); server not needed
