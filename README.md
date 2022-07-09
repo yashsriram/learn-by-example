@@ -1,9 +1,3 @@
-# the problem
-- people and teams need to understand one another, in a high dynamic environment like braincorp to function as a one coherent product.
-- bugs donot care about team boundaries.
-- there is a gap in understanding across teams, about their products and apis, as experienced by me (i am guessing more people) and surveyed and conveyed in recent all hands talks.
-- also seen in tickets like [TST-147](https://braincorporation.atlassian.net/browse/TST-147), [SENSE-75](https://braincorporation.atlassian.net/browse/SENSE-75), [PLATFORM-2801](https://braincorporation.atlassian.net/browse/PLATFORM-2801).
-
 # previous work
 - this is not my first attempt at knowledge transfer.
 - [schoolbag](https://github.com/yashsriram/compost/tree/master/SchoolBag) - heihrarchical plain text. too less structure.
@@ -20,21 +14,12 @@
 - quiz gives feedback, which reading lacks.
 
 # the goals
-<details>
-    <summary>Before reading further, try to answer <a href="https://yashsriram.github.io/learn-by-example/how-to-use">this question</a> to understand this tool and compare that with reading the text</summary>
-<ul>
-<li>Lean quiz tool.</li>
-<li>Quick to contribute, quick to use</li>
-    <ul>
-    <li>Write question and its answer in markdown, readable in github by itself.</li>
-    <li>CI/CD will gently guide you in case of any problems.</li>
-    <li>If everthing okay you get a URL for your question that you can share.</li>
-    <li>Answer in browser.</li>
-    <li>Get authors from git blame.</li>
-    </ul>
-</ul>
-</details>
-
+- Lean quiz tool.
+- Super easy to contribute, use and maintain.
+    - Write question and its answer in markdown, readable in github by itself.
+    - CI/CD will gently guide you in case of any problems.
+    - If everthing okay you get a URL for your question that you can share.
+    - Answer in browser.
 
 # faqs
 - 🤔 multi choice multi correct questions. why this format?
