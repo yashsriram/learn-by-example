@@ -1,12 +1,10 @@
 # prompt
 What is our CI/CD software?
 
-# options
+# truth
 - [ ] Github actions
 - [x] Jenkins
 - [ ] Graphana
 - [ ] Logz.io
 
 # hint
-
-# explaination

@@ -40,9 +40,8 @@
     {{ hint | safe }}
 </div>
 
-<div id="truth_and_explaination" hidden>
+<div id="truth" hidden>
     {{ truth | safe }}
-    {{ explaination | safe }}
 </div>
 </fieldset>
 
@@ -80,7 +79,7 @@
     }
 
     function show_truth() {
-        const hint = document.querySelector("#truth_and_explaination");
+        const hint = document.querySelector("#truth");
         hint.hidden = false;
     }
 </script>

@@ -26,30 +26,43 @@
 
 <div id="options">
     <fieldset>
-        <h1>select all true (multiple or zero can be true)</h1>
-<ul>
+        <ul>
 <li><input disabled="" type="checkbox"/>
 This is primarily a documentation tool.</li>
 <li><input disabled="" type="checkbox"/>
 This is primarily a visualization tool.</li>
+</ul>
+<ul>
 <li><input disabled="" type="checkbox"/>
 This tool uses an aws/gcp instance to survive.</li>
 <li><input disabled="" type="checkbox"/>
 Anyone in the world can see these questions and answers.</li>
+</ul>
+<ul>
 <li><input disabled="" type="checkbox"/>
 I write questions and their true answers in markdown which gets turned into a quiz.</li>
 <li><input disabled="" type="checkbox"/>
 I can write absolutely anything and it gets turned into a quiz.</li>
+</ul>
+<ul>
 <li><input disabled="" type="checkbox"/>
 I cannot use images since this is markdown.</li>
+</ul>
+<ul>
 <li><input disabled="" type="checkbox"/>
 I can answer questions in a browser.</li>
 <li><input disabled="" type="checkbox"/>
 I can answer questions in a mobile.</li>
+</ul>
+<ul>
 <li><input disabled="" type="checkbox"/>
-I can share my question with URL.</li>
+<p>I can share my question with URL.</p>
+</li>
 <li><input disabled="" type="checkbox"/>
-If you do not know markdown you are doomed.</li>
+<p>If you do not know markdown you are doomed.</p>
+</li>
+</ul>
+<ul>
 <li><input disabled="" type="checkbox"/>
 I will have to read html files at some point.</li>
 </ul>
@@ -73,37 +86,29 @@ I will have to read html files at some point.</li>
 
 </div>
 
-<div id="truth_and_explaination" hidden>
+<div id="truth" hidden>
     <h1>truth</h1>
 <ul>
 <li><input disabled="" type="checkbox"/>
 This is primarily a documentation tool.</li>
 <li><input disabled="" type="checkbox"/>
 This is primarily a visualization tool.</li>
+</ul>
+<p>This is primarily a (lean) quiz tool.</p>
+<ul>
 <li><input disabled="" type="checkbox"/>
 This tool uses an aws/gcp instance to survive.</li>
 <li><input disabled="" type="checkbox"/>
 Anyone in the world can see these questions and answers.</li>
+</ul>
+<p>This tool creates static html + js pages parsed from markdown and host them using <a href="https://pages.github.com/">github pages</a>.
+Only people with access to the repo (and therefore its github pages) can access them. This will be a braincorp org repo so no one outside braincorp will be able access this info</p>
+<ul>
 <li><input disabled="" type="checkbox" checked=""/>
 I write questions and their true answers in markdown which gets turned into a quiz.</li>
 <li><input disabled="" type="checkbox"/>
 I can write absolutely anything and it gets turned into a quiz.</li>
-<li><input disabled="" type="checkbox"/>
-I cannot use images since this is markdown.</li>
-<li><input disabled="" type="checkbox" checked=""/>
-I can answer questions in a browser.</li>
-<li><input disabled="" type="checkbox" checked=""/>
-I can answer questions in a mobile.</li>
-<li><input disabled="" type="checkbox" checked=""/>
-I can share my question with URL.</li>
-<li><input disabled="" type="checkbox"/>
-If you do not know markdown you are doomed.</li>
-<li><input disabled="" type="checkbox"/>
-I will have to read html files at some point.</li>
 </ul>
-
-    <h1>explaination</h1>
-<p>This is primarily a (lean) quiz tool.</p>
 <p>You can write questions in markdown but you need to follow the minimal structure</p>
 <pre><code># prompt
 ask something
@@ -117,12 +122,32 @@ ask something
 # explaination
 </code></pre>
 <p>or else CI/CD will ask you to change it.</p>
+<ul>
+<li><input disabled="" type="checkbox"/>
+I cannot use images since this is markdown.</li>
+</ul>
 <p>This is markdown so you can use images, unicode 😀, tables, with github even videos.</p>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/3/31/Wiki_logo_Nupedia.jpg" alt="wiki" /></p>
+<ul>
+<li><input disabled="" type="checkbox" checked=""/>
+I can answer questions in a browser.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+I can answer questions in a mobile.</li>
+</ul>
 <p>You can answer questions in any device that has a browser.</p>
-<p>This tool creates static html + js pages parsed from markdown and host them using <a href="https://pages.github.com/">github pages</a>.
-Only people with access to the repo (and therefore its github pages) can access them. This will be a braincorp org repo so no one outside braincorp will be able access this info</p>
+<ul>
+<li><input disabled="" type="checkbox" checked=""/>
+<p>I can share my question with URL.</p>
+</li>
+<li><input disabled="" type="checkbox"/>
+<p>If you do not know markdown you are doomed.</p>
+</li>
+</ul>
 <p>Nope! You can <a href="https://commonmark.org/">learn common mark in under 60 seconds here</a>.</p>
+<ul>
+<li><input disabled="" type="checkbox"/>
+I will have to read html files at some point.</li>
+</ul>
 <p>You donot need to read html ever, all questions are stored as markdown which you can read in github itself. For ex</p>
 <p><img src="https://user-images.githubusercontent.com/18350119/177879528-7c896c4c-29d6-43fc-b425-62686acf81ee.png" alt="md_question" /></p>
 
@@ -163,7 +188,7 @@ Only people with access to the repo (and therefore its github pages) can access 
     }
 
     function show_truth() {
-        const hint = document.querySelector("#truth_and_explaination");
+        const hint = document.querySelector("#truth");
         hint.hidden = false;
     }
 </script>

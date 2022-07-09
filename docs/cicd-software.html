@@ -26,8 +26,7 @@
 
 <div id="options">
     <fieldset>
-        <h1>select all true (multiple or zero can be true)</h1>
-<ul>
+        <ul>
 <li><input disabled="" type="checkbox"/>
 Github actions</li>
 <li><input disabled="" type="checkbox"/>
@@ -54,7 +53,7 @@ Logz.io</li>
 
 </div>
 
-<div id="truth_and_explaination" hidden>
+<div id="truth" hidden>
     <h1>truth</h1>
 <ul>
 <li><input disabled="" type="checkbox"/>
@@ -66,8 +65,6 @@ Graphana</li>
 <li><input disabled="" type="checkbox"/>
 Logz.io</li>
 </ul>
-
-    <h1>explaination</h1>
 
 </div>
 </fieldset>
@@ -106,7 +103,7 @@ Logz.io</li>
     }
 
     function show_truth() {
-        const hint = document.querySelector("#truth_and_explaination");
+        const hint = document.querySelector("#truth");
         hint.hidden = false;
     }
 </script>

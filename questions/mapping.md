@@ -1,7 +1,7 @@
 # prompt
 What kind of sensors are used for creating maps on Gen2 scrubbers?
 
-# options
+# truth
 - [ ] Slanted lidar.
 - [x] Planar lidar.
 - [ ] Front camera.
@@ -12,10 +12,9 @@ What kind of sensors are used for creating maps on Gen2 scrubbers?
 - [x] Magnetometer.
 - [x] Gyro.
 
-# hint
-go through the code
-
-# explaination
 Cameras and IFMs are not used while mapping.
 
 Even slanted lidar is not used while mapping.
+
+# hint
+go through the code

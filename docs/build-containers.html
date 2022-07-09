@@ -26,14 +26,15 @@
 
 <div id="options">
     <fieldset>
-        <h1>select all true (multiple or zero can be true)</h1>
-<ul>
+        <ul>
 <li><input disabled="" type="checkbox"/>
 0, the build happens on the host.</li>
 <li><input disabled="" type="checkbox"/>
 1, the sandbox.</li>
 <li><input disabled="" type="checkbox"/>
 2, the build container and the runtime container.</li>
+</ul>
+<ul>
 <li><input disabled="" type="checkbox"/>
 3, the build container, the runtime container, the sandbox.</li>
 </ul>
@@ -51,11 +52,11 @@
 
 <div id="hint" hidden>
     <h1>hint</h1>
-<p>no hints here, sorry</p>
+<p>go through the code</p>
 
 </div>
 
-<div id="truth_and_explaination" hidden>
+<div id="truth" hidden>
     <h1>truth</h1>
 <ul>
 <li><input disabled="" type="checkbox"/>
@@ -64,14 +65,14 @@
 1, the sandbox.</li>
 <li><input disabled="" type="checkbox" checked=""/>
 2, the build container and the runtime container.</li>
-<li><input disabled="" type="checkbox"/>
-3, the build container, the runtime container, the sandbox.</li>
 </ul>
-
-    <h1>explaination</h1>
 <p>There are two containers during the build.</p>
 <p>The build container which complies our sources.</p>
 <p>The runtime container in which the compiled targets are place in, a.k.a the sandbox.</p>
+<ul>
+<li><input disabled="" type="checkbox"/>
+3, the build container, the runtime container, the sandbox.</li>
+</ul>
 
 </div>
 </fieldset>
@@ -110,7 +111,7 @@
     }
 
     function show_truth() {
-        const hint = document.querySelector("#truth_and_explaination");
+        const hint = document.querySelector("#truth");
         hint.hidden = false;
     }
 </script>

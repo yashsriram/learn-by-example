@@ -26,8 +26,7 @@
 
 <div id="options">
     <fieldset>
-        <h1>select all true (multiple or zero can be true)</h1>
-<ul>
+        <ul>
 <li><input disabled="" type="checkbox"/>
 Slanted lidar.</li>
 <li><input disabled="" type="checkbox"/>
@@ -65,7 +64,7 @@ Gyro.</li>
 
 </div>
 
-<div id="truth_and_explaination" hidden>
+<div id="truth" hidden>
     <h1>truth</h1>
 <ul>
 <li><input disabled="" type="checkbox"/>
@@ -87,8 +86,6 @@ Magnetometer.</li>
 <li><input disabled="" type="checkbox" checked=""/>
 Gyro.</li>
 </ul>
-
-    <h1>explaination</h1>
 <p>Cameras and IFMs are not used while mapping.</p>
 <p>Even slanted lidar is not used while mapping.</p>
 
@@ -129,7 +126,7 @@ Gyro.</li>
     }
 
     function show_truth() {
-        const hint = document.querySelector("#truth_and_explaination");
+        const hint = document.querySelector("#truth");
         hint.hidden = false;
     }
 </script>

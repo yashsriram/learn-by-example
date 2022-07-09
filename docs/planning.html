@@ -26,14 +26,19 @@
 
 <div id="options">
     <fieldset>
-        <h1>select all true (multiple or zero can be true)</h1>
-<ul>
+        <ul>
 <li><input disabled="" type="checkbox"/>
 A global planner.</li>
+</ul>
+<ul>
 <li><input disabled="" type="checkbox"/>
-Traj opt, the global planner.</li>
+<p>Traj opt, the global planner.</p>
+</li>
 <li><input disabled="" type="checkbox"/>
-Traj opt, the local planner.</li>
+<p>Traj opt, the local planner.</p>
+</li>
+</ul>
+<ul>
 <li><input disabled="" type="checkbox"/>
 Dynamic Window Planner</li>
 <li><input disabled="" type="checkbox"/>
@@ -57,23 +62,28 @@ Elastic bands planner.</li>
 
 </div>
 
-<div id="truth_and_explaination" hidden>
+<div id="truth" hidden>
     <h1>truth</h1>
 <ul>
 <li><input disabled="" type="checkbox" checked=""/>
 A global planner.</li>
+</ul>
+<p>Currently shining uses a high level global planner</p>
+<ul>
 <li><input disabled="" type="checkbox"/>
-Traj opt, the global planner.</li>
+<p>Traj opt, the global planner.</p>
+</li>
 <li><input disabled="" type="checkbox" checked=""/>
-Traj opt, the local planner.</li>
+<p>Traj opt, the local planner.</p>
+</li>
+</ul>
+<p>and traj opt which is a local planner.</p>
+<ul>
 <li><input disabled="" type="checkbox"/>
 Dynamic Window Planner</li>
 <li><input disabled="" type="checkbox"/>
 Elastic bands planner.</li>
 </ul>
-
-    <h1>explaination</h1>
-<p>Currently shining uses a high level global planner and traj opt which is a local planner.</p>
 <p>Dynamic window approach and elastic band planners were previous algorithms used by shining.</p>
 
 </div>
@@ -113,7 +123,7 @@ Elastic bands planner.</li>
     }
 
     function show_truth() {
-        const hint = document.querySelector("#truth_and_explaination");
+        const hint = document.querySelector("#truth");
         hint.hidden = false;
     }
 </script>

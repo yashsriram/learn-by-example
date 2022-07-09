@@ -5,12 +5,10 @@ We want to align it with orientation unit vector __t__.
 
 How should robot turn to do this the fastest?
 
-# options
+# truth
 - [ ] Always turn left,
 - [ ] Always turn right
 - [x] Direction of $+\frac{(c \times t)}{|c| . |t|}$
 - [ ] Direction of $-\frac{(c \times t)}{|c| . |t|}$
 
 # hint
-
-# explaination
