@@ -18,38 +18,26 @@
 <body>
 
 
-<fieldset>
+<fieldset id="truth_removed">
 
-{{ prompt | safe }}
+{{ truth_removed | safe }}
 
-<div id="options">
-    <fieldset>
-        {{ options | safe }}
-    </fieldset>
-</div>
+</fieldset>
 
 <button onclick="evaluate_answer()">evaluate</button>
-
-<button onclick="show_hint()">hint</button>
 
 <button onclick="show_truth()">reveal</button>
 
 <h1 id="feedback" hidden></h1>
 
-<div id="hint" hidden>
-    {{ hint | safe }}
-</div>
-
 <div id="truth" hidden>
     {{ truth | safe }}
 </div>
-</fieldset>
-
 
 
 <script>
     function init() {
-        document.querySelectorAll("div#options input").forEach(e => { e.disabled = false; });
+        document.querySelectorAll("#truth_removed input").forEach(e => { e.disabled = false; });
     }
 
     init();
@@ -57,7 +45,7 @@
     const truth = {{ truth_values }};
 
     function evaluate_answer() {
-        const inputs = document.querySelectorAll(`#options input`);
+        const inputs = document.querySelectorAll(`#truth_removed input`);
         const answer = Array.from(inputs).map(e => e.checked);
         const feedback = document.querySelector(`#feedback`);
         for (let i = 0; i < answer.length; ++i) {
@@ -71,11 +59,6 @@
         feedback.innerHTML = "correct answer";
         feedback.hidden = false;
         show_truth();
-    }
-
-    function show_hint() {
-        const hint = document.querySelector("#hint");
-        hint.hidden = false;
     }
 
     function show_truth() {

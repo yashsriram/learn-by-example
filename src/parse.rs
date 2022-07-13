@@ -3,11 +3,11 @@ use serde::Serialize;
 
 #[derive(Serialize, Debug)]
 pub struct MultiChoiceMultiCorrectQuestionHtml {
-    prompt: String,
-    options: String,
+    // prompt: String,
+    truth_removed: String,
     truth: String,
     truth_values: Vec<bool>,
-    hint: String,
+    // hint: String,
 }
 
 pub fn parse(md_string: String) -> Result<MultiChoiceMultiCorrectQuestionHtml, String> {
@@ -22,45 +22,44 @@ pub fn parse(md_string: String) -> Result<MultiChoiceMultiCorrectQuestionHtml, S
     let parser = Parser::new_ext(&md_string, md_parse_options);
     let events: Vec<_> = parser.collect();
     // delimit according to h1s, best out of all the tags in common mark specs, ux wise
-    let h1_start_idxes: Vec<_> = events
-        .iter()
-        .enumerate()
-        .filter_map(|(idx, event)| match event {
-            Event::Start(Tag::Heading(HeadingLevel::H1, None, ..)) => Some(idx),
-            _ => None,
-        })
-        .collect();
+    // let h1_start_idxes: Vec<_> = events
+    //     .iter()
+    //     .enumerate()
+    //     .filter_map(|(idx, event)| match event {
+    //         Event::Start(Tag::Heading(HeadingLevel::H1, None, ..)) => Some(idx),
+    //         _ => None,
+    //     })
+    //     .collect();
     // h1s as expected?
-    let found_h1s = h1_start_idxes
-        .iter()
-        // for every start end is guranteed => this will not be out of bounds
-        .map(|idx| events[idx + 1].clone())
-        .collect::<Vec<_>>();
-    let required_h1s = vec![
-        Event::Text(CowStr::Borrowed("prompt")),
-        Event::Text(CowStr::Borrowed("truth")),
-        Event::Text(CowStr::Borrowed("hint")),
-    ];
-    let required_h1s_are_found = required_h1s == found_h1s;
-    if !required_h1s_are_found {
-        return Err(format!(
-            "required h1s: {:?}\nfound h1s   : {:?}",
-            required_h1s, found_h1s,
-        ));
-    }
+    // let found_h1s = h1_start_idxes
+    //     .iter()
+    //     // for every start end is guranteed => this will not be out of bounds
+    //     .map(|idx| events[idx + 1].clone())
+    //     .collect::<Vec<_>>();
+    // let required_h1s = vec![
+    //     Event::Text(CowStr::Borrowed("prompt")),
+    //     Event::Text(CowStr::Borrowed("truth")),
+    //     Event::Text(CowStr::Borrowed("hint")),
+    // ];
+    // let required_h1s_are_found = required_h1s == found_h1s;
+    // if !required_h1s_are_found {
+    //     return Err(format!(
+    //         "required h1s: {:?}\nfound h1s   : {:?}",
+    //         required_h1s, found_h1s,
+    //     ));
+    // }
     // delimit based on h1s
-    let prompt_range = h1_start_idxes[0]..h1_start_idxes[1];
-    // parsed -> html string
-    let prompt_html_string = {
-        let mut html_string = String::new();
-        html::push_html(
-            &mut html_string,
-            events[prompt_range].iter().map(|event| event.clone()),
-        );
-        html_string
-    };
-    let truth_range = h1_start_idxes[1]..h1_start_idxes[2];
-    let number_of_options = events[truth_range.clone()]
+    // let prompt_range = h1_start_idxes[0]..h1_start_idxes[1];
+    // // parsed -> html string
+    // let prompt_html_string = {
+    //     let mut html_string = String::new();
+    //     html::push_html(
+    //         &mut html_string,
+    //         events[prompt_range].iter().map(|event| event.clone()),
+    //     );
+    //     html_string
+    // };
+    let number_of_options = events
         .iter()
         .filter(|event| match event {
             Event::TaskListMarker(..) => true,
@@ -73,8 +72,8 @@ pub fn parse(md_string: String) -> Result<MultiChoiceMultiCorrectQuestionHtml, S
             number_of_options,
         ));
     }
-    let options_html_string = {
-        let options: Vec<_> = events[truth_range.clone()]
+    let truth_removed_html_string = {
+        let truth_removed: Vec<_> = events
             .iter()
             .map(|event| match event {
                 Event::Text(CowStr::Borrowed("truth")) => Event::Text(CowStr::Borrowed(
@@ -84,63 +83,69 @@ pub fn parse(md_string: String) -> Result<MultiChoiceMultiCorrectQuestionHtml, S
                 _ => event.clone(),
             })
             .collect();
-        let list_start_idxes = options
-            .iter()
-            .enumerate()
-            .filter_map(|(idx, event)| match event {
-                Event::Start(Tag::List(None)) => Some(idx),
-                _ => None,
-            });
-        let list_end_idxes = options
-            .iter()
-            .enumerate()
-            .filter_map(|(idx, event)| match event {
-                Event::End(Tag::List(None)) => Some(idx),
-                _ => None,
-            });
+        // let start_idxes = truth_removed
+        //     .iter()
+        //     .enumerate()
+        //     .filter_map(|(idx, event)| match event {
+        //         Event::Start(Tag::Item) => Some(idx),
+        //         _ => None,
+        //     });
+        // let end_idxes = truth_removed
+        //     .iter()
+        //     .enumerate()
+        //     .filter_map(|(idx, event)| match event {
+        //         Event::End(Tag::Item) => Some(idx),
+        //         _ => None,
+        //     });
+        // let mut options = vec![Event::Start(Tag::List(None))];
+        // for (start_idx, end_idx) in start_idxes.zip(end_idxes) {
+        //     options.append(&truth_removed[start_idx..=end_idx].clone())
+        // }
+        // let options = start_idxes
+        //     .zip(end_idxes)
+        //     .into_iter()
+        //     .map(|(start_idx, end_idx)| )
+        //     .map(|event| event.clone());
         let mut html_string = String::new();
-        for (start_idx, end_idx) in list_start_idxes.zip(list_end_idxes) {
-            html::push_html(
-                &mut html_string,
-                options[start_idx..=end_idx]
-                    .iter()
-                    .map(|event| event.clone()),
-            );
-        }
+        // for (start_idx, end_idx) in start_idxes.zip(end_idxes) {
+        //     html::push_html(
+        //         &mut html_string,
+        //         ,
+        //     );
+        // }
+        html::push_html(
+            &mut html_string,
+            truth_removed.into_iter().map(|event| event),
+        );
         html_string
     };
     let truth_html_string = {
         let mut html_string = String::new();
-        html::push_html(
-            &mut html_string,
-            events[truth_range.clone()]
-                .iter()
-                .map(|event| event.clone()),
-        );
+        html::push_html(&mut html_string, events.iter().map(|event| event.clone()));
         html_string
     };
-    let truth_values = events[truth_range.clone()]
+    let truth_values = events
         .iter()
         .filter_map(|event| match event {
             Event::TaskListMarker(val) => Some(*val),
             _ => None,
         })
         .collect();
-    let hint_range = h1_start_idxes[2]..;
-    let hint_html_string = {
-        let mut html_string = String::new();
-        html::push_html(
-            &mut html_string,
-            events[hint_range].iter().map(|event| event.clone()),
-        );
-        html_string
-    };
+    // let hint_range = h1_start_idxes[2]..;
+    // let hint_html_string = {
+    //     let mut html_string = String::new();
+    //     html::push_html(
+    //         &mut html_string,
+    //         events[hint_range].iter().map(|event| event.clone()),
+    //     );
+    //     html_string
+    // };
     Ok(MultiChoiceMultiCorrectQuestionHtml {
-        prompt: prompt_html_string,
-        options: options_html_string,
+        // prompt: prompt_html_string,
+        truth_removed: truth_removed_html_string,
         truth: truth_html_string,
         truth_values,
-        hint: hint_html_string,
+        // hint: hint_html_string,
     })
 }
 
