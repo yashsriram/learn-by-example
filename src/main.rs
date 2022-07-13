@@ -9,16 +9,14 @@ use parse::*;
 #[cfg(test)]
 mod tests;
 
-const TEMPLATES_GLOB: &'static str = "templates/*.html";
-const QUESTIONS_GLOB: &'static str = "questions/*.md";
+const QUESTIONS_GLOB: &'static str = "src/questions/*.md";
+const TEMPLATE_GLOB: &'static str = "src/templates/*.tera";
+const MCMQ_TEMPLATE: &'static str = "multi-choice-multi-correct.tera";
 const HTML_OUTPUT_DIR: &'static str = "docs/";
 
 fn main() {
-    let tera = Tera::new(TEMPLATES_GLOB).unwrap_or_else(|e| {
-        eprintln!(
-            "template parsing error(s) for glob {}: {}",
-            TEMPLATES_GLOB, e
-        );
+    let tera = Tera::new(TEMPLATE_GLOB).unwrap_or_else(|e| {
+        eprintln!("template parsing error(s) for {}: {}", TEMPLATE_GLOB, e);
         std::process::exit(1);
     });
     let md_glob = glob(QUESTIONS_GLOB).unwrap_or_else(|e| {
@@ -60,7 +58,7 @@ fn main() {
             std::process::exit(1);
         });
         let html_str = tera
-            .render("multi-choice-multi-correct.html", &tera_context)
+            .render(MCMQ_TEMPLATE, &tera_context)
             .unwrap_or_else(|e| {
                 eprintln!("tera template render error(s): {}", e);
                 std::process::exit(1);
