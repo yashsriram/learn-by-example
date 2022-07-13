@@ -20,7 +20,6 @@
 
 <fieldset id="truth_removed">
 
-<p>Which of the following is right about this tool?</p>
 <ul>
 <li><input disabled="" type="checkbox"/>
 This is primarily a documentation tool.</li>
@@ -28,24 +27,6 @@ This is primarily a documentation tool.</li>
 This is primarily a visualization tool.</li>
 <li><input disabled="" type="checkbox"/>
 This is primarily a (lean) quiz tool.</li>
-<li><input disabled="" type="checkbox"/>
-This tool uses an aws/gcp instance to survive.</li>
-<li><input disabled="" type="checkbox"/>
-Anyone in the world can see these questions and answers.</li>
-<li><input disabled="" type="checkbox"/>
-I write questions and their true answers in markdown which gets turned into a quiz.</li>
-<li><input disabled="" type="checkbox"/>
-I cannot use images since this is markdown.</li>
-<li><input disabled="" type="checkbox"/>
-I can answer questions in a browser.</li>
-<li><input disabled="" type="checkbox"/>
-I can answer questions in a mobile.</li>
-<li><input disabled="" type="checkbox"/>
-I can share my question with URL.</li>
-<li><input disabled="" type="checkbox"/>
-If you do not know markdown you are doomed.</li>
-<li><input disabled="" type="checkbox"/>
-I will have to read html files at some point.</li>
 </ul>
 
 
@@ -58,32 +39,13 @@ I will have to read html files at some point.</li>
 <h1 id="feedback" hidden></h1>
 
 <div id="truth" hidden>
-    <p>Which of the following is right about this tool?</p>
-<ul>
+    <ul>
 <li><input disabled="" type="checkbox"/>
 This is primarily a documentation tool.</li>
 <li><input disabled="" type="checkbox"/>
 This is primarily a visualization tool.</li>
 <li><input disabled="" type="checkbox" checked=""/>
 This is primarily a (lean) quiz tool.</li>
-<li><input disabled="" type="checkbox"/>
-This tool uses an aws/gcp instance to survive.</li>
-<li><input disabled="" type="checkbox"/>
-Anyone in the world can see these questions and answers.</li>
-<li><input disabled="" type="checkbox" checked=""/>
-I write questions and their true answers in markdown which gets turned into a quiz.</li>
-<li><input disabled="" type="checkbox"/>
-I cannot use images since this is markdown.</li>
-<li><input disabled="" type="checkbox" checked=""/>
-I can answer questions in a browser.</li>
-<li><input disabled="" type="checkbox" checked=""/>
-I can answer questions in a mobile.</li>
-<li><input disabled="" type="checkbox" checked=""/>
-I can share my question with URL.</li>
-<li><input disabled="" type="checkbox"/>
-If you do not know markdown you are doomed.</li>
-<li><input disabled="" type="checkbox"/>
-I will have to read html files at some point.</li>
 </ul>
 
 </div>
@@ -96,7 +58,7 @@ I will have to read html files at some point.</li>
 
     init();
 
-    const truth = [false, false, true, false, false, true, false, true, true, true, false, false];
+    const truth = [false, false, true];
 
     function evaluate_answer() {
         const inputs = document.querySelectorAll(`#truth_removed input`);
