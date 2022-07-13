@@ -30,7 +30,6 @@
     - html + js; static page serving, no server, while keeping keeping html + js code to minimum.
     - CI/CD; , if pass -> merge; fail -> do not merge.
     - multi choice multi correct questions. why this format?
-        - 
-            - simple, fast and fun to write/validate/read questions, evaluate answers, implement and maintain
-            - gives feedback!
-            - there is no best format, remember learning happens inside student's head not outside in a quiz software but this format is missing in brain corp.
+        - simple, fast and fun to write/validate/read questions, evaluate answers, implement and maintain
+        - gives feedback!
+        - there is no best format, remember learning happens inside student's head not outside in a quiz software but this format is missing in brain corp.
