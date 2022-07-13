@@ -1,0 +1,2 @@
+- [ ] This tool uses an aws/gcp instance to survive.
+- [ ] Anyone in the world can see these questions and answers.

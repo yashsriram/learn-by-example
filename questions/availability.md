@@ -1,0 +1,5 @@
+- [x] I write questions and their true answers in markdown which gets turned into a quiz.
+- [ ] I cannot use images since this is markdown.
+- [x] I can answer questions in a browser.
+- [x] I can answer questions in a mobile.
+- [x] I can share my question with URL.

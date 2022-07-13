@@ -1,0 +1,2 @@
+- [ ] If you do not know markdown you are doomed.
+- [ ] I will have to read html files at some point.

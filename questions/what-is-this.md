@@ -1,0 +1,3 @@
+- [ ] This is primarily a documentation tool.
+- [ ] This is primarily a visualization tool.
+- [x] This is primarily a (lean) quiz tool.
