@@ -6,6 +6,9 @@ use tera::Tera;
 mod parse;
 use parse::*;
 
+#[cfg(test)]
+mod tests;
+
 const TEMPLATES_GLOB: &'static str = "templates/*.html";
 const QUESTIONS_GLOB: &'static str = "questions/*.md";
 const HTML_OUTPUT_DIR: &'static str = "docs/";
