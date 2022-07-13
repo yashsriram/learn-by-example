@@ -74,22 +74,29 @@ mod tests {
     use super::*;
 
     #[test]
-    fn good1() {
-        let md_string = "
-# prompt
-what is 2 + 2?
+    fn valid_bad1() {
+        let md_string = "- [ ] 1 + 1 = 3.".to_string();
+        assert!(parse(md_string).is_ok());
+    }
 
-# options
+    #[test]
+    fn valid_good1() {
+        let md_string = "- [ ] 1 + 1 = 3.".to_string();
+        assert!(parse(md_string).is_ok());
+    }
+
+    #[test]
+    fn valid_good2() {
+        let md_string = "- [x] 1 * 1 = 1.".to_string();
+        assert!(parse(md_string).is_ok());
+    }
+
+    #[test]
+    fn valid_good3() {
+        let md_string = "what is 2 + 2? \
 - [x] 4.
-- [x] 2 x 2.
 - [ ] 3.
 - [x] -2 x -2.
-
-# hint
-1 + 1 + 1 + 1
-
-# explaination
-2 x 2 == 2 + 2 == 4 == -2 x -2.
 "
         .to_string();
         assert!(parse(md_string).is_ok());
@@ -97,18 +104,8 @@ what is 2 + 2?
 
     #[test]
     #[should_panic]
-    fn bad0() {
-        let md_string = "
-# prompt
-what is 2 + 2?
-
-# options
-- [x] 4.
-- [x] 2 x 2.
-- [ ] 3.
-- [x] -2 x -2.
-"
-        .to_string();
+    fn invalid() {
+        let md_string = "what is 2 + 2?".to_string();
         assert!(parse(md_string).is_ok());
     }
 }
