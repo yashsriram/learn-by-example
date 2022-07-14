@@ -20,16 +20,26 @@
 
 <fieldset id="truth_removed">
 
-<p>What is our CI/CD software?</p>
+<p>What kind of sensors are used for creating maps on Gen2 scrubbers?</p>
 <ul>
 <li><input disabled="" type="checkbox"/>
-Github actions</li>
+Slanted lidar.</li>
 <li><input disabled="" type="checkbox"/>
-Jenkins</li>
+Planar lidar.</li>
 <li><input disabled="" type="checkbox"/>
-Graphana</li>
+Front camera.</li>
 <li><input disabled="" type="checkbox"/>
-Logz.io</li>
+Side camera.</li>
+<li><input disabled="" type="checkbox"/>
+Front IFM.</li>
+<li><input disabled="" type="checkbox"/>
+Side IFM.</li>
+<li><input disabled="" type="checkbox"/>
+Odometer.</li>
+<li><input disabled="" type="checkbox"/>
+Magnetometer.</li>
+<li><input disabled="" type="checkbox"/>
+Gyro.</li>
 </ul>
 
 
@@ -42,22 +52,32 @@ Logz.io</li>
 <h1 id="feedback" hidden></h1>
 
 <div id="truth" hidden>
-    <p>What is our CI/CD software?</p>
+    <p>What kind of sensors are used for creating maps on Gen2 scrubbers?</p>
 <ul>
 <li><input disabled="" type="checkbox"/>
-Github actions</li>
+Slanted lidar.</li>
 <li><input disabled="" type="checkbox" checked=""/>
-Jenkins</li>
+Planar lidar.</li>
 <li><input disabled="" type="checkbox"/>
-Graphana</li>
+Front camera.</li>
 <li><input disabled="" type="checkbox"/>
-Logz.io</li>
+Side camera.</li>
+<li><input disabled="" type="checkbox"/>
+Front IFM.</li>
+<li><input disabled="" type="checkbox"/>
+Side IFM.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Odometer.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Magnetometer.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Gyro.</li>
 </ul>
 
 </div>
 
 
-<a href="/learn-by-example/foo/mapping">mapping</a>
+<a href="mapping">mapping</a>
 
 <script>
     function init() {
@@ -66,7 +86,7 @@ Logz.io</li>
 
     init();
 
-    const truth = [false, true, false, false];
+    const truth = [false, true, false, false, false, false, true, true, true];
 
     function evaluate_answer() {
         const inputs = document.querySelectorAll(`#truth_removed input`);

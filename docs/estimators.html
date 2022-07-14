@@ -20,16 +20,11 @@
 
 <fieldset id="truth_removed">
 
-<p>What is our CI/CD software?</p>
 <ul>
 <li><input disabled="" type="checkbox"/>
-Github actions</li>
+MLE.</li>
 <li><input disabled="" type="checkbox"/>
-Jenkins</li>
-<li><input disabled="" type="checkbox"/>
-Graphana</li>
-<li><input disabled="" type="checkbox"/>
-Logz.io</li>
+MAP.</li>
 </ul>
 
 
@@ -42,16 +37,11 @@ Logz.io</li>
 <h1 id="feedback" hidden></h1>
 
 <div id="truth" hidden>
-    <p>What is our CI/CD software?</p>
-<ul>
+    <ul>
 <li><input disabled="" type="checkbox"/>
-Github actions</li>
-<li><input disabled="" type="checkbox" checked=""/>
-Jenkins</li>
+MLE.</li>
 <li><input disabled="" type="checkbox"/>
-Graphana</li>
-<li><input disabled="" type="checkbox"/>
-Logz.io</li>
+MAP.</li>
 </ul>
 
 </div>
@@ -66,7 +56,7 @@ Logz.io</li>
 
     init();
 
-    const truth = [false, true, false, false];
+    const truth = [false, false];
 
     function evaluate_answer() {
         const inputs = document.querySelectorAll(`#truth_removed input`);
