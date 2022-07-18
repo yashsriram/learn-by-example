@@ -1,14 +1,7 @@
+use crate::MultiChoiceMultiCorrectContext;
 use pulldown_cmark::{html, CowStr, Event, Options, Parser};
-use serde::Serialize;
 
-#[derive(Serialize, Debug)]
-pub struct MultiChoiceMultiCorrectQuestionHtml {
-    truth_removed_html: String,
-    truth_html: String,
-    truth_values: Vec<bool>,
-}
-
-pub fn parse(md_string: String) -> Result<MultiChoiceMultiCorrectQuestionHtml, String> {
+pub fn parse(md_string: String) -> Result<MultiChoiceMultiCorrectContext, String> {
     let mut md_parse_options = Options::empty();
     md_parse_options.insert(Options::ENABLE_TABLES);
     md_parse_options.insert(Options::ENABLE_FOOTNOTES);
@@ -61,10 +54,9 @@ pub fn parse(md_string: String) -> Result<MultiChoiceMultiCorrectQuestionHtml, S
             _ => None,
         })
         .collect();
-    Ok(MultiChoiceMultiCorrectQuestionHtml {
+    Ok(MultiChoiceMultiCorrectContext {
         truth_removed_html,
         truth_html,
         truth_values,
     })
 }
-

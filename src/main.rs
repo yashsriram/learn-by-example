@@ -1,7 +1,10 @@
-use glob::glob;
+use serde::Serialize;
+use std::error::Error;
+use std::path::Path;
 use std::{self, path::PathBuf};
 use tera::Context;
 use tera::Tera;
+use walkdir::WalkDir;
 
 mod parse;
 use parse::*;
@@ -9,63 +12,129 @@ use parse::*;
 #[cfg(test)]
 mod tests;
 
-const QUESTIONS_GLOB: &'static str = "src/questions/*.md";
+const QUESTIONS_DIR: &'static str = "src/questions";
 const TEMPLATE_GLOB: &'static str = "src/templates/*.tera";
+const INDEX_TEMPLATE: &'static str = "index.tera";
 const MCMQ_TEMPLATE: &'static str = "multi-choice-multi-correct.tera";
-const HTML_OUTPUT_DIR: &'static str = "docs/";
+const HTML_OUTPUT_DIR: &'static str = "docs";
+const HTML_INDEX_FILE: &'static str = "index.html";
 
-fn main() {
-    let tera = Tera::new(TEMPLATE_GLOB).unwrap_or_else(|e| {
-        eprintln!("template parsing error(s) for {}: {}", TEMPLATE_GLOB, e);
-        std::process::exit(1);
-    });
-    let md_glob = glob(QUESTIONS_GLOB).unwrap_or_else(|e| {
-        eprintln!("glob parsing error(s) for glob {}: {}", QUESTIONS_GLOB, e);
-        std::process::exit(1);
-    });
-    let md_paths = md_glob.into_iter().map(|entry| {
-        entry.unwrap_or_else(|e| {
-            eprintln!("glob collection error(s): {}", e);
-            std::process::exit(1);
+#[derive(Serialize, Debug)]
+pub struct IndexContext {
+    children: Vec<String>,
+}
+
+#[derive(Serialize, Debug)]
+pub struct MultiChoiceMultiCorrectContext {
+    truth_removed_html: String,
+    truth_html: String,
+    truth_values: Vec<bool>,
+}
+
+fn main() -> Result<(), Box<dyn Error>> {
+    let entries: Vec<_> = WalkDir::new(QUESTIONS_DIR).into_iter().collect();
+    entries
+        .iter()
+        .all(|entry| entry.is_ok())
+        .then_some(())
+        .ok_or("errors found while walking dir")?;
+    let entries: Vec<_> = entries.into_iter().filter_map(|entry| entry.ok()).collect();
+    entries
+        .iter()
+        .all(|entry| {
+            entry.file_type().is_dir()
+                || (entry.file_type().is_file()
+                    && entry
+                        .path()
+                        .extension()
+                        .map(|extension| extension == "md")
+                        .unwrap_or(false))
         })
-    });
-    for md_path in md_paths {
-        println!("generating html for {:?}", md_path);
-        let html_path = {
-            let mut html_path = PathBuf::from(HTML_OUTPUT_DIR);
-            let file_name = md_path.file_name().unwrap_or_else(|| {
-                eprintln!("md file name read error(s)");
-                std::process::exit(1);
-            });
-            html_path.push(&file_name);
-            let extension_success = html_path.set_extension("html");
-            if !extension_success {
-                eprintln!(".md -> .html extension failed");
-                std::process::exit(1);
-            }
-            html_path
-        };
-        let md_str = std::fs::read_to_string(md_path).unwrap_or_else(|e| {
-            eprintln!("md file read error(s): {}", e);
+        .then_some(())
+        .ok_or("non-md file found")?;
+    let tera = Tera::new(TEMPLATE_GLOB)?;
+    for entry in entries {
+        if entry.file_type().is_dir() {
+            print!("generating html for {:?} ... ", entry.path());
+            let html_path = {
+                let mut html_path = PathBuf::from(HTML_OUTPUT_DIR);
+                let md_path_after_questions_dir: PathBuf = entry
+                    .path()
+                    .components()
+                    .skip(Path::new(QUESTIONS_DIR).components().count())
+                    .collect();
+                html_path.push(md_path_after_questions_dir);
+                html_path.push(HTML_INDEX_FILE);
+                html_path
+            };
+            let children: Vec<_> = WalkDir::new(entry.path())
+                .min_depth(1)
+                .max_depth(1)
+                .into_iter()
+                .map(|entry| {
+                    let entry = entry.unwrap_or_else(|e| {
+                        eprintln!("walk dir error {}", e);
+                        std::process::exit(1);
+                    });
+                    let stem = entry
+                        .path()
+                        .file_stem()
+                        .unwrap_or_else(|| {
+                            eprintln!("no file stem");
+                            std::process::exit(1);
+                        })
+                        .to_str()
+                        .unwrap_or_else(|| {
+                            eprintln!("os string to str problem");
+                            std::process::exit(1);
+                        })
+                        .into();
+                    stem
+                })
+                .collect();
+            println!("{:?}", children);
+            let index_context = IndexContext { children };
+            let tera_context = Context::from_serialize(&index_context)?;
+            let html_str = tera.render(INDEX_TEMPLATE, &tera_context)?;
+            let html_dir = html_path
+                .parent()
+                .ok_or("html file parent dir getting error")?;
+            std::fs::create_dir_all(html_dir)?;
+            std::fs::write(html_path.clone(), html_str)?;
+            println!("done. {:?}", html_path);
+        } else if entry.file_type().is_file() {
+            let md_str = std::fs::read_to_string(entry.path())?;
+            print!("generating html for {:?} ... ", entry.path());
+            let html_path = {
+                let mut html_path = PathBuf::from(HTML_OUTPUT_DIR);
+                let md_path_after_questions_dir: PathBuf = entry
+                    .path()
+                    .components()
+                    .skip(Path::new(QUESTIONS_DIR).components().count())
+                    .collect();
+                html_path.push(md_path_after_questions_dir);
+                html_path
+                    .set_extension("html")
+                    .then_some(())
+                    .ok_or(".md -> .html extension failed")?;
+                html_path
+            };
+            let mcmc_context = parse(md_str)?;
+            let tera_context = Context::from_serialize(&mcmc_context)?;
+            let html_str = tera.render(MCMQ_TEMPLATE, &tera_context)?;
+            let html_dir = html_path
+                .parent()
+                .ok_or("html file parent dir getting error")?;
+            std::fs::create_dir_all(html_dir)?;
+            std::fs::write(html_path.clone(), html_str)?;
+            println!("done. {:?}", html_path);
+        } else {
+            eprintln!(
+                "file is neither a regualar file nor a directory {:?}",
+                entry.path()
+            );
             std::process::exit(1);
-        });
-        let mcmcq_html = parse(md_str).unwrap_or_else(|e| {
-            eprintln!("{}", e);
-            std::process::exit(1);
-        });
-        let tera_context = Context::from_serialize(&mcmcq_html).unwrap_or_else(|e| {
-            eprintln!("tera context parse error(s): {}", e);
-            std::process::exit(1);
-        });
-        let html_str = tera
-            .render(MCMQ_TEMPLATE, &tera_context)
-            .unwrap_or_else(|e| {
-                eprintln!("tera template render error(s): {}", e);
-                std::process::exit(1);
-            });
-        std::fs::write(html_path, html_str).unwrap_or_else(|e| {
-            eprintln!("html file write error(s): {}", e);
-            std::process::exit(1);
-        });
+        }
     }
+    Ok(())
 }
