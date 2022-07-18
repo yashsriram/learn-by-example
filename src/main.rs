@@ -26,6 +26,7 @@ pub struct IndexContext {
 
 #[derive(Serialize, Debug)]
 pub struct MultiChoiceMultiCorrectContext {
+    id: PathBuf,
     truth_removed_html: String,
     truth_html: String,
     truth_values: Vec<bool>,
@@ -54,16 +55,16 @@ fn main() -> Result<(), Box<dyn Error>> {
         .ok_or("non-md file found")?;
     let tera = Tera::new(TEMPLATE_GLOB)?;
     for entry in entries {
+        let path_rooted_at_questions_dir: PathBuf = entry
+            .path()
+            .components()
+            .skip(Path::new(QUESTIONS_DIR).components().count())
+            .collect();
         if entry.file_type().is_dir() {
             print!("generating html for {:?} ... ", entry.path());
             let html_path = {
                 let mut html_path = PathBuf::from(HTML_OUTPUT_DIR);
-                let md_path_after_questions_dir: PathBuf = entry
-                    .path()
-                    .components()
-                    .skip(Path::new(QUESTIONS_DIR).components().count())
-                    .collect();
-                html_path.push(md_path_after_questions_dir);
+                html_path.push(&path_rooted_at_questions_dir);
                 html_path.push(HTML_INDEX_FILE);
                 html_path
             };
@@ -92,7 +93,6 @@ fn main() -> Result<(), Box<dyn Error>> {
                     stem
                 })
                 .collect();
-            println!("{:?}", children);
             let index_context = IndexContext { children };
             let tera_context = Context::from_serialize(&index_context)?;
             let html_str = tera.render(INDEX_TEMPLATE, &tera_context)?;
@@ -106,20 +106,22 @@ fn main() -> Result<(), Box<dyn Error>> {
             let md_str = std::fs::read_to_string(entry.path())?;
             print!("generating html for {:?} ... ", entry.path());
             let html_path = {
-                let mut html_path = PathBuf::from(HTML_OUTPUT_DIR);
-                let md_path_after_questions_dir: PathBuf = entry
-                    .path()
-                    .components()
-                    .skip(Path::new(QUESTIONS_DIR).components().count())
-                    .collect();
-                html_path.push(md_path_after_questions_dir);
-                html_path
-                    .set_extension("html")
+                let mut path = PathBuf::from(HTML_OUTPUT_DIR);
+                path.push(&path_rooted_at_questions_dir);
+                path.set_extension("html")
                     .then_some(())
                     .ok_or(".md -> .html extension failed")?;
-                html_path
+                path
             };
-            let mcmc_context = parse(md_str)?;
+            let stem_path = {
+                let mut path = PathBuf::new();
+                path.push(&path_rooted_at_questions_dir);
+                path.set_extension("")
+                    .then_some(())
+                    .ok_or(".md extension removal failed")?;
+                path
+            };
+            let mcmc_context = parse(stem_path, md_str)?;
             let tera_context = Context::from_serialize(&mcmc_context)?;
             let html_str = tera.render(MCMQ_TEMPLATE, &tera_context)?;
             let html_dir = html_path
