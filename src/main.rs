@@ -21,6 +21,7 @@ const HTML_INDEX_FILE: &'static str = "index.html";
 
 #[derive(Serialize, Debug)]
 pub struct IndexContext {
+    id: PathBuf,
     children: Vec<(bool, String)>,
 }
 
@@ -95,7 +96,10 @@ fn main() -> Result<(), Box<dyn Error>> {
                     (is_file, stem)
                 })
                 .collect();
-            let index_context = IndexContext { children };
+            let index_context = IndexContext {
+                id: path_rooted_at_questions_dir,
+                children,
+            };
             let tera_context = Context::from_serialize(&index_context)?;
             let html_str = tera.render(INDEX_TEMPLATE, &tera_context)?;
             let html_dir = html_path

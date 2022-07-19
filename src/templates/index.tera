@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>@ dir id</title>
+    <title>{{ id }} ★ learn-by-example</title>
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     <script type="text/javascript">
     window.MathJax = {
@@ -17,13 +17,22 @@
 
 <body>
 
-<ul>
+<ol>
 {% for child in children %}
     <li>
-    <a href="{{ child }}">{{loop.index}} {{ child }}</a>
+    <a href="{{ child.1 }}">
+        {% if child.0 %}
+            
+        {% else %}
+            
+        {% endif %}
+        {{ child.1 }}
+    </a>
     </li>
 {% endfor %}
-</ul>
+</ol>
+
+<a href="./..">up ▲</a>
 
 </body>
 </html>
