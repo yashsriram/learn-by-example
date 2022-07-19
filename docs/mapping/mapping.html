@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>visibility</title>
+    <title>mapping/mapping</title>
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     <script type="text/javascript">
     window.MathJax = {
@@ -20,14 +20,27 @@
 
 <fieldset id="truth_removed">
     <legend>
-        visibility
+        mapping/mapping
     </legend>
 
+<p>What kind of sensors are used for creating maps on Gen2 scrubbers?</p>
 <ul>
 <li><input disabled="" type="checkbox"/>
-This tool uses an aws/gcp instance to survive.</li>
+Slanted lidar.</li>
 <li><input disabled="" type="checkbox"/>
-Anyone in the world can see these questions and answers.</li>
+Planar lidar.</li>
+<li><input disabled="" type="checkbox"/>
+Front camera.</li>
+<li><input disabled="" type="checkbox"/>
+Side camera.</li>
+<li><input disabled="" type="checkbox"/>
+Front IFM.</li>
+<li><input disabled="" type="checkbox"/>
+Side IFM.</li>
+<li><input disabled="" type="checkbox"/>
+Odometer.</li>
+<li><input disabled="" type="checkbox"/>
+Gyro.</li>
 </ul>
 
 
@@ -40,11 +53,24 @@ Anyone in the world can see these questions and answers.</li>
 <h1 id="feedback" hidden></h1>
 
 <div id="truth" hidden>
-    <ul>
+    <p>What kind of sensors are used for creating maps on Gen2 scrubbers?</p>
+<ul>
 <li><input disabled="" type="checkbox"/>
-This tool uses an aws/gcp instance to survive.</li>
+Slanted lidar.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Planar lidar.</li>
 <li><input disabled="" type="checkbox"/>
-Anyone in the world can see these questions and answers.</li>
+Front camera.</li>
+<li><input disabled="" type="checkbox"/>
+Side camera.</li>
+<li><input disabled="" type="checkbox"/>
+Front IFM.</li>
+<li><input disabled="" type="checkbox"/>
+Side IFM.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Odometer.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Gyro.</li>
 </ul>
 
 </div>
@@ -61,7 +87,7 @@ Anyone in the world can see these questions and answers.</li>
 
     init();
 
-    const truth = [false, false];
+    const truth = [false, true, false, false, false, false, true, true];
 
     function evaluate_answer() {
         const inputs = document.querySelectorAll(`#truth_removed input`);

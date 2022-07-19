@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>foo1/diff-drive-turn</title>
+    <title>self/visibility</title>
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     <script type="text/javascript">
     window.MathJax = {
@@ -20,21 +20,14 @@
 
 <fieldset id="truth_removed">
     <legend>
-        foo1/diff-drive-turn
+        self/visibility
     </legend>
 
-<p>A <a href="https://en.wikipedia.org/wiki/Differential_wheeled_robot">diff drive robot</a> has a orientation unit vector <strong>c</strong>.</p>
-<p>We want to align it with orientation unit vector <strong>t</strong>.</p>
-<p>How should robot turn to do this the fastest?</p>
 <ul>
 <li><input disabled="" type="checkbox"/>
-Always turn left,</li>
+This tool uses an aws/gcp instance to survive.</li>
 <li><input disabled="" type="checkbox"/>
-Always turn right</li>
-<li><input disabled="" type="checkbox"/>
-Direction of $+\frac{(c \times t)}{|c| . |t|}$</li>
-<li><input disabled="" type="checkbox"/>
-Direction of $-\frac{(c \times t)}{|c| . |t|}$</li>
+Anyone in the world can see these questions and answers.</li>
 </ul>
 
 
@@ -47,18 +40,11 @@ Direction of $-\frac{(c \times t)}{|c| . |t|}$</li>
 <h1 id="feedback" hidden></h1>
 
 <div id="truth" hidden>
-    <p>A <a href="https://en.wikipedia.org/wiki/Differential_wheeled_robot">diff drive robot</a> has a orientation unit vector <strong>c</strong>.</p>
-<p>We want to align it with orientation unit vector <strong>t</strong>.</p>
-<p>How should robot turn to do this the fastest?</p>
-<ul>
+    <ul>
 <li><input disabled="" type="checkbox"/>
-Always turn left,</li>
+This tool uses an aws/gcp instance to survive.</li>
 <li><input disabled="" type="checkbox"/>
-Always turn right</li>
-<li><input disabled="" type="checkbox" checked=""/>
-Direction of $+\frac{(c \times t)}{|c| . |t|}$</li>
-<li><input disabled="" type="checkbox"/>
-Direction of $-\frac{(c \times t)}{|c| . |t|}$</li>
+Anyone in the world can see these questions and answers.</li>
 </ul>
 
 </div>
@@ -75,7 +61,7 @@ Direction of $-\frac{(c \times t)}{|c| . |t|}$</li>
 
     init();
 
-    const truth = [false, false, true, false];
+    const truth = [false, false];
 
     function evaluate_answer() {
         const inputs = document.querySelectorAll(`#truth_removed input`);

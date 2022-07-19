@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>diff-drive-turn</title>
+    <title>planning/planning</title>
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     <script type="text/javascript">
     window.MathJax = {
@@ -20,21 +20,19 @@
 
 <fieldset id="truth_removed">
     <legend>
-        diff-drive-turn
+        planning/planning
     </legend>
 
-<p>A <a href="https://en.wikipedia.org/wiki/Differential_wheeled_robot">diff drive robot</a> has a orientation unit vector <strong>c</strong>.</p>
-<p>We want to align it with orientation unit vector <strong>t</strong>.</p>
-<p>How should robot turn to do this the fastest?</p>
+<p>What kind of planners are involved in current shining’s motion planning?</p>
 <ul>
 <li><input disabled="" type="checkbox"/>
-Always turn left,</li>
+Traj opt, the global planner.</li>
 <li><input disabled="" type="checkbox"/>
-Always turn right</li>
+Traj opt, the local planner.</li>
 <li><input disabled="" type="checkbox"/>
-Direction of $+\frac{(c \times t)}{|c| . |t|}$</li>
+Dynamic Window Planner</li>
 <li><input disabled="" type="checkbox"/>
-Direction of $-\frac{(c \times t)}{|c| . |t|}$</li>
+Elastic bands planner.</li>
 </ul>
 
 
@@ -47,18 +45,16 @@ Direction of $-\frac{(c \times t)}{|c| . |t|}$</li>
 <h1 id="feedback" hidden></h1>
 
 <div id="truth" hidden>
-    <p>A <a href="https://en.wikipedia.org/wiki/Differential_wheeled_robot">diff drive robot</a> has a orientation unit vector <strong>c</strong>.</p>
-<p>We want to align it with orientation unit vector <strong>t</strong>.</p>
-<p>How should robot turn to do this the fastest?</p>
+    <p>What kind of planners are involved in current shining’s motion planning?</p>
 <ul>
 <li><input disabled="" type="checkbox"/>
-Always turn left,</li>
-<li><input disabled="" type="checkbox"/>
-Always turn right</li>
+Traj opt, the global planner.</li>
 <li><input disabled="" type="checkbox" checked=""/>
-Direction of $+\frac{(c \times t)}{|c| . |t|}$</li>
+Traj opt, the local planner.</li>
 <li><input disabled="" type="checkbox"/>
-Direction of $-\frac{(c \times t)}{|c| . |t|}$</li>
+Dynamic Window Planner</li>
+<li><input disabled="" type="checkbox"/>
+Elastic bands planner.</li>
 </ul>
 
 </div>
@@ -75,7 +71,7 @@ Direction of $-\frac{(c \times t)}{|c| . |t|}$</li>
 
     init();
 
-    const truth = [false, false, true, false];
+    const truth = [false, true, false, false];
 
     function evaluate_answer() {
         const inputs = document.querySelectorAll(`#truth_removed input`);

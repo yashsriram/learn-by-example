@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>build-containers</title>
+    <title>self/prereqs</title>
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     <script type="text/javascript">
     window.MathJax = {
@@ -20,19 +20,14 @@
 
 <fieldset id="truth_removed">
     <legend>
-        build-containers
+        self/prereqs
     </legend>
 
-<p>How many containers are involved in the shining build?</p>
 <ul>
 <li><input disabled="" type="checkbox"/>
-0, the build happens on the host.</li>
+If you do not know markdown you are doomed.</li>
 <li><input disabled="" type="checkbox"/>
-1, the sandbox.</li>
-<li><input disabled="" type="checkbox"/>
-2, the build container and the runtime container.</li>
-<li><input disabled="" type="checkbox"/>
-3, the build container, the runtime container, the sandbox.</li>
+I will have to read html files at some point.</li>
 </ul>
 
 
@@ -45,16 +40,11 @@
 <h1 id="feedback" hidden></h1>
 
 <div id="truth" hidden>
-    <p>How many containers are involved in the shining build?</p>
-<ul>
+    <ul>
 <li><input disabled="" type="checkbox"/>
-0, the build happens on the host.</li>
+If you do not know markdown you are doomed.</li>
 <li><input disabled="" type="checkbox"/>
-1, the sandbox.</li>
-<li><input disabled="" type="checkbox" checked=""/>
-2, the build container and the runtime container.</li>
-<li><input disabled="" type="checkbox"/>
-3, the build container, the runtime container, the sandbox.</li>
+I will have to read html files at some point.</li>
 </ul>
 
 </div>
@@ -71,7 +61,7 @@
 
     init();
 
-    const truth = [false, false, true, false];
+    const truth = [false, false];
 
     function evaluate_answer() {
         const inputs = document.querySelectorAll(`#truth_removed input`);

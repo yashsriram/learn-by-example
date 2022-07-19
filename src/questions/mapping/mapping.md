@@ -7,5 +7,4 @@ What kind of sensors are used for creating maps on Gen2 scrubbers?
 - [ ] Front IFM.
 - [ ] Side IFM.
 - [x] Odometer.
-- [x] Magnetometer.
 - [x] Gyro.

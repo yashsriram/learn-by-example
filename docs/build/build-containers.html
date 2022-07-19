@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>mapping</title>
+    <title>build/build-containers</title>
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     <script type="text/javascript">
     window.MathJax = {
@@ -20,29 +20,19 @@
 
 <fieldset id="truth_removed">
     <legend>
-        mapping
+        build/build-containers
     </legend>
 
-<p>What kind of sensors are used for creating maps on Gen2 scrubbers?</p>
+<p>How many containers are involved in the shining build?</p>
 <ul>
 <li><input disabled="" type="checkbox"/>
-Slanted lidar.</li>
+0, the build happens on the host.</li>
 <li><input disabled="" type="checkbox"/>
-Planar lidar.</li>
+1, the sandbox.</li>
 <li><input disabled="" type="checkbox"/>
-Front camera.</li>
+2, the build container and the runtime container.</li>
 <li><input disabled="" type="checkbox"/>
-Side camera.</li>
-<li><input disabled="" type="checkbox"/>
-Front IFM.</li>
-<li><input disabled="" type="checkbox"/>
-Side IFM.</li>
-<li><input disabled="" type="checkbox"/>
-Odometer.</li>
-<li><input disabled="" type="checkbox"/>
-Magnetometer.</li>
-<li><input disabled="" type="checkbox"/>
-Gyro.</li>
+3, the build container, the runtime container, the sandbox.</li>
 </ul>
 
 
@@ -55,26 +45,16 @@ Gyro.</li>
 <h1 id="feedback" hidden></h1>
 
 <div id="truth" hidden>
-    <p>What kind of sensors are used for creating maps on Gen2 scrubbers?</p>
+    <p>How many containers are involved in the shining build?</p>
 <ul>
 <li><input disabled="" type="checkbox"/>
-Slanted lidar.</li>
-<li><input disabled="" type="checkbox" checked=""/>
-Planar lidar.</li>
+0, the build happens on the host.</li>
 <li><input disabled="" type="checkbox"/>
-Front camera.</li>
-<li><input disabled="" type="checkbox"/>
-Side camera.</li>
-<li><input disabled="" type="checkbox"/>
-Front IFM.</li>
-<li><input disabled="" type="checkbox"/>
-Side IFM.</li>
+1, the sandbox.</li>
 <li><input disabled="" type="checkbox" checked=""/>
-Odometer.</li>
-<li><input disabled="" type="checkbox" checked=""/>
-Magnetometer.</li>
-<li><input disabled="" type="checkbox" checked=""/>
-Gyro.</li>
+2, the build container and the runtime container.</li>
+<li><input disabled="" type="checkbox"/>
+3, the build container, the runtime container, the sandbox.</li>
 </ul>
 
 </div>
@@ -91,7 +71,7 @@ Gyro.</li>
 
     init();
 
-    const truth = [false, true, false, false, false, false, true, true, true];
+    const truth = [false, false, true, false];
 
     function evaluate_answer() {
         const inputs = document.querySelectorAll(`#truth_removed input`);

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>availability</title>
+    <title>planning/diff-drive-turn</title>
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     <script type="text/javascript">
     window.MathJax = {
@@ -20,20 +20,21 @@
 
 <fieldset id="truth_removed">
     <legend>
-        availability
+        planning/diff-drive-turn
     </legend>
 
+<p>A <a href="https://en.wikipedia.org/wiki/Differential_wheeled_robot">diff drive robot</a> has a orientation unit vector <strong>c</strong>.</p>
+<p>We want to align it with orientation unit vector <strong>t</strong>.</p>
+<p>How should robot turn to do this the fastest?</p>
 <ul>
 <li><input disabled="" type="checkbox"/>
-I write questions and their true answers in markdown which gets turned into a quiz.</li>
+Always turn left,</li>
 <li><input disabled="" type="checkbox"/>
-I cannot use images since this is markdown.</li>
+Always turn right</li>
 <li><input disabled="" type="checkbox"/>
-I can answer questions in a browser.</li>
+Direction of $+\frac{(c \times t)}{|c| . |t|}$</li>
 <li><input disabled="" type="checkbox"/>
-I can answer questions in a mobile.</li>
-<li><input disabled="" type="checkbox"/>
-I can share my question with URL.</li>
+Direction of $-\frac{(c \times t)}{|c| . |t|}$</li>
 </ul>
 
 
@@ -46,17 +47,18 @@ I can share my question with URL.</li>
 <h1 id="feedback" hidden></h1>
 
 <div id="truth" hidden>
-    <ul>
-<li><input disabled="" type="checkbox" checked=""/>
-I write questions and their true answers in markdown which gets turned into a quiz.</li>
+    <p>A <a href="https://en.wikipedia.org/wiki/Differential_wheeled_robot">diff drive robot</a> has a orientation unit vector <strong>c</strong>.</p>
+<p>We want to align it with orientation unit vector <strong>t</strong>.</p>
+<p>How should robot turn to do this the fastest?</p>
+<ul>
 <li><input disabled="" type="checkbox"/>
-I cannot use images since this is markdown.</li>
+Always turn left,</li>
+<li><input disabled="" type="checkbox"/>
+Always turn right</li>
 <li><input disabled="" type="checkbox" checked=""/>
-I can answer questions in a browser.</li>
-<li><input disabled="" type="checkbox" checked=""/>
-I can answer questions in a mobile.</li>
-<li><input disabled="" type="checkbox" checked=""/>
-I can share my question with URL.</li>
+Direction of $+\frac{(c \times t)}{|c| . |t|}$</li>
+<li><input disabled="" type="checkbox"/>
+Direction of $-\frac{(c \times t)}{|c| . |t|}$</li>
 </ul>
 
 </div>
@@ -73,7 +75,7 @@ I can share my question with URL.</li>
 
     init();
 
-    const truth = [true, false, true, true, true];
+    const truth = [false, false, true, false];
 
     function evaluate_answer() {
         const inputs = document.querySelectorAll(`#truth_removed input`);

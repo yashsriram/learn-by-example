@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>prereqs</title>
+    <title>self/availability</title>
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     <script type="text/javascript">
     window.MathJax = {
@@ -20,14 +20,20 @@
 
 <fieldset id="truth_removed">
     <legend>
-        prereqs
+        self/availability
     </legend>
 
 <ul>
 <li><input disabled="" type="checkbox"/>
-If you do not know markdown you are doomed.</li>
+I write questions and their true answers in markdown which gets turned into a quiz.</li>
 <li><input disabled="" type="checkbox"/>
-I will have to read html files at some point.</li>
+I cannot use images since this is markdown.</li>
+<li><input disabled="" type="checkbox"/>
+I can answer questions in a browser.</li>
+<li><input disabled="" type="checkbox"/>
+I can answer questions in a mobile.</li>
+<li><input disabled="" type="checkbox"/>
+I can share my question with URL.</li>
 </ul>
 
 
@@ -41,10 +47,16 @@ I will have to read html files at some point.</li>
 
 <div id="truth" hidden>
     <ul>
+<li><input disabled="" type="checkbox" checked=""/>
+I write questions and their true answers in markdown which gets turned into a quiz.</li>
 <li><input disabled="" type="checkbox"/>
-If you do not know markdown you are doomed.</li>
-<li><input disabled="" type="checkbox"/>
-I will have to read html files at some point.</li>
+I cannot use images since this is markdown.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+I can answer questions in a browser.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+I can answer questions in a mobile.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+I can share my question with URL.</li>
 </ul>
 
 </div>
@@ -61,7 +73,7 @@ I will have to read html files at some point.</li>
 
     init();
 
-    const truth = [false, false];
+    const truth = [true, false, true, true, true];
 
     function evaluate_answer() {
         const inputs = document.querySelectorAll(`#truth_removed input`);
