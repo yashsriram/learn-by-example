@@ -17,6 +17,8 @@
 
 <body>
 
+<a href="./.."><button>up ▲</button></a>
+
 <ol>
 {% for child in children %}
     <li>
@@ -32,7 +34,6 @@
 {% endfor %}
 </ol>
 
-<a href="./..">up ▲</a>
 
 </body>
 </html>
