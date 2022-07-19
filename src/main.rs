@@ -21,7 +21,7 @@ const HTML_INDEX_FILE: &'static str = "index.html";
 
 #[derive(Serialize, Debug)]
 pub struct IndexContext {
-    children: Vec<String>,
+    children: Vec<(bool, String)>,
 }
 
 #[derive(Serialize, Debug)]
@@ -91,7 +91,8 @@ fn main() -> Result<(), Box<dyn Error>> {
                             std::process::exit(1);
                         })
                         .into();
-                    stem
+                    let is_file = entry.file_type().is_file();
+                    (is_file, stem)
                 })
                 .collect();
             let index_context = IndexContext { children };

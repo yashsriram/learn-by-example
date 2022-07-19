@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>test/cicd-software</title>
+    <title>foo/bar/lol</title>
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     <script type="text/javascript">
     window.MathJax = {
@@ -20,19 +20,12 @@
 
 <fieldset id="truth_removed">
     <legend>
-        test/cicd-software
+        foo/bar/lol
     </legend>
 
-<p>What kind of CI/CD is used for shining?</p>
 <ul>
 <li><input disabled="" type="checkbox"/>
-Github actions</li>
-<li><input disabled="" type="checkbox"/>
-Jenkins</li>
-<li><input disabled="" type="checkbox"/>
-Graphana</li>
-<li><input disabled="" type="checkbox"/>
-Logz.io</li>
+foo.</li>
 </ul>
 
 
@@ -45,16 +38,9 @@ Logz.io</li>
 <h1 id="feedback" hidden></h1>
 
 <div id="truth" hidden>
-    <p>What kind of CI/CD is used for shining?</p>
-<ul>
-<li><input disabled="" type="checkbox" checked=""/>
-Github actions</li>
-<li><input disabled="" type="checkbox" checked=""/>
-Jenkins</li>
+    <ul>
 <li><input disabled="" type="checkbox"/>
-Graphana</li>
-<li><input disabled="" type="checkbox"/>
-Logz.io</li>
+foo.</li>
 </ul>
 
 </div>
@@ -71,7 +57,7 @@ Logz.io</li>
 
     init();
 
-    const truth = [true, true, false, false];
+    const truth = [false];
 
     function evaluate_answer() {
         const inputs = document.querySelectorAll(`#truth_removed input`);
