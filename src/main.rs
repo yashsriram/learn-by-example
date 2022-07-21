@@ -53,7 +53,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                         .unwrap_or(false))
         })
         .then_some(())
-        .ok_or("non-md file found")?;
+        .ok_or("non dir file or non-md file found")?;
     let tera = Tera::new(TEMPLATE_GLOB)?;
     std::fs::remove_dir_all(HTML_OUTPUT_DIR)?;
     for entry in entries {
@@ -63,13 +63,13 @@ fn main() -> Result<(), Box<dyn Error>> {
             .skip(Path::new(QUESTIONS_DIR).components().count())
             .collect();
         if entry.file_type().is_dir() {
-            print!("generating html for {:?} ... ", entry.path());
             let html_path = {
                 let mut html_path = PathBuf::from(HTML_OUTPUT_DIR);
                 html_path.push(&path_rooted_at_questions_dir);
                 html_path.push(HTML_INDEX_FILE);
                 html_path
             };
+            print!("generating {:?} for {:?} ... ", html_path, entry.path());
             let children: Vec<_> = WalkDir::new(entry.path())
                 .min_depth(1)
                 .max_depth(1)
@@ -107,10 +107,9 @@ fn main() -> Result<(), Box<dyn Error>> {
                 .ok_or("html file parent dir getting error")?;
             std::fs::create_dir_all(html_dir)?;
             std::fs::write(html_path.clone(), html_str)?;
-            println!("done. {:?}", html_path);
+            println!("done.");
         } else if entry.file_type().is_file() {
             let md_str = std::fs::read_to_string(entry.path())?;
-            print!("generating html for {:?} ... ", entry.path());
             let html_path = {
                 let mut path = PathBuf::from(HTML_OUTPUT_DIR);
                 path.push(&path_rooted_at_questions_dir);
@@ -119,6 +118,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                     .ok_or(".md -> .html extension failed")?;
                 path
             };
+            print!("generating {:?} for {:?} ... ", html_path, entry.path());
             let stem_path = {
                 let mut path = PathBuf::new();
                 path.push(&path_rooted_at_questions_dir);
@@ -135,7 +135,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                 .ok_or("html file parent dir getting error")?;
             std::fs::create_dir_all(html_dir)?;
             std::fs::write(html_path.clone(), html_str)?;
-            println!("done. {:?}", html_path);
+            println!("done.");
         } else {
             eprintln!(
                 "file is neither a regualar file nor a directory {:?}",
