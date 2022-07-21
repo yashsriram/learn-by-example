@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>mapping/pose-graph-opt</title>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script type="text/javascript">
+    window.MathJax = {
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+    };
+    </script>
+</head>
+
+<body>
+
+<a href="./.."><button>up ▲</button></a>
+
+<fieldset id="truth_removed">
+    <legend>
+        mapping/pose-graph-opt
+    </legend>
+
+<p>Which of the following is true for pose graph and its optimization for a planar robot with wheel encoders and lidar scans?</p>
+<p><a href="https://youtu.be/saVZtgPyyJQ">ref matlab autonomous navigation series</a></p>
+<ul>
+<li><input disabled="" type="checkbox"/>
+Kalman filter and Particle filter estimate optimal current state given new measurements.</li>
+<li><input disabled="" type="checkbox"/>
+Pose graph optimization estimates the optimal trajectory using all the measurements until now.</li>
+</ul>
+<hr />
+<ul>
+<li><input disabled="" type="checkbox"/>
+Graph nodes represent positions.</li>
+<li><input disabled="" type="checkbox"/>
+Graph nodes represent positions + orientation.</li>
+<li><input disabled="" type="checkbox"/>
+Graph nodes represent position + orientation + scans.</li>
+</ul>
+<hr />
+<ul>
+<li><input disabled="" type="checkbox"/>
+Graph edges represent change in position.</li>
+<li><input disabled="" type="checkbox"/>
+Graph edges represent change in position + orientation.</li>
+<li><input disabled="" type="checkbox"/>
+Graph edges represent change in position + orientation + scans.</li>
+</ul>
+<hr />
+<ul>
+<li><input disabled="" type="checkbox"/>
+Graph edges stiffness is proportional to the certainity of the transform.</li>
+<li><input disabled="" type="checkbox"/>
+Graph edges stiffness is inversely proportional to the certainity of the transform.</li>
+</ul>
+<hr />
+<ul>
+<li><input disabled="" type="checkbox"/>
+Loop closure adds tension in a free graph.</li>
+<li><input disabled="" type="checkbox"/>
+Loop closure is the only thing that adds tension in a graph.</li>
+<li><input disabled="" type="checkbox"/>
+Loop closure can only be done once.</li>
+</ul>
+
+
+</fieldset>
+
+<button onclick="evaluate_answer()">🙋 evaluate</button>
+<a href="#"><button>◀ prev</button></a>
+<a href="#"><button>next ▶</button></a>
+<button onclick="show_truth()">😓 reveal</button>
+
+<h1 id="feedback" hidden></h1>
+
+<div id="truth" hidden>
+    <p>Which of the following is true for pose graph and its optimization for a planar robot with wheel encoders and lidar scans?</p>
+<p><a href="https://youtu.be/saVZtgPyyJQ">ref matlab autonomous navigation series</a></p>
+<ul>
+<li><input disabled="" type="checkbox" checked=""/>
+Kalman filter and Particle filter estimate optimal current state given new measurements.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Pose graph optimization estimates the optimal trajectory using all the measurements until now.</li>
+</ul>
+<hr />
+<ul>
+<li><input disabled="" type="checkbox"/>
+Graph nodes represent positions.</li>
+<li><input disabled="" type="checkbox"/>
+Graph nodes represent positions + orientation.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Graph nodes represent position + orientation + scans.</li>
+</ul>
+<hr />
+<ul>
+<li><input disabled="" type="checkbox"/>
+Graph edges represent change in position.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Graph edges represent change in position + orientation.</li>
+<li><input disabled="" type="checkbox"/>
+Graph edges represent change in position + orientation + scans.</li>
+</ul>
+<hr />
+<ul>
+<li><input disabled="" type="checkbox" checked=""/>
+Graph edges stiffness is proportional to the certainity of the transform.</li>
+<li><input disabled="" type="checkbox"/>
+Graph edges stiffness is inversely proportional to the certainity of the transform.</li>
+</ul>
+<hr />
+<ul>
+<li><input disabled="" type="checkbox" checked=""/>
+Loop closure adds tension in a free graph.</li>
+<li><input disabled="" type="checkbox"/>
+Loop closure is the only thing that adds tension in a graph.</li>
+<li><input disabled="" type="checkbox"/>
+Loop closure can only be done once.</li>
+</ul>
+
+</div>
+
+
+<script>
+    function init() {
+        document.querySelectorAll("#truth_removed input").forEach(e => { e.disabled = false; });
+    }
+
+    init();
+
+    const truth = [true, true, false, false, true, false, true, false, true, false, true, false, false];
+
+    function evaluate_answer() {
+        const inputs = document.querySelectorAll(`#truth_removed input`);
+        const answer = Array.from(inputs).map(e => e.checked);
+        const feedback = document.querySelector(`#feedback`);
+        for (let i = 0; i < answer.length; ++i) {
+            const is_element_eq = answer[i] === truth[i];
+            if (!is_element_eq) {
+                feedback.innerHTML = "incorrect answer";
+                feedback.hidden = false;
+                return;
+            }
+        }
+        feedback.innerHTML = "correct answer";
+        feedback.hidden = false;
+        show_truth();
+    }
+
+    function show_truth() {
+        const hint = document.querySelector("#truth");
+        hint.hidden = false;
+    }
+</script>
+
+</body>
+</html>
