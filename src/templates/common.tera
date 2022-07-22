@@ -17,7 +17,7 @@
 
 <body>
 
-<a href="..">home</a>
+<a href="https://yashsriram.github.io/learn-by-example/">home</a>
 <a href="./..">up ▲</a>
 
 {% block content %}{% endblock content %}
