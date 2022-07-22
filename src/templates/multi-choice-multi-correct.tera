@@ -1,6 +1,6 @@
 {% extends "common.tera" %}
 
-{% block title %}{{ path_rooted_at_questions_dir }}{% endblock title %}
+{% block title %}{{ path_rooted_at_questions_dir }} ★ learn-by-example{% endblock title %}
 
 {% block content %}
 
