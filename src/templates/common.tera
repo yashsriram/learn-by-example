@@ -17,12 +17,12 @@
 
 <body>
 
-<a href="https://yashsriram.github.io/learn-by-example/">home</a>
 <a href="./..">up ▲</a>
 
 {% block content %}{% endblock content %}
 
 <footer>
+<a href="https://yashsriram.github.io/learn-by-example/">home</a>
 <a href="https://github.com/yashsriram/learn-by-example">github</a>
 </footer>
 
