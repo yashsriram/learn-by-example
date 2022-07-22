@@ -2,10 +2,7 @@ use crate::MultiChoiceMultiCorrectContext;
 use pulldown_cmark::{html, CowStr, Event, Options, Parser};
 use std::path::PathBuf;
 
-pub fn parse(
-    stem_path: PathBuf,
-    md_string: String,
-) -> Result<MultiChoiceMultiCorrectContext, String> {
+pub fn parse(path: PathBuf, md_string: String) -> Result<MultiChoiceMultiCorrectContext, String> {
     let mut md_parse_options = Options::empty();
     md_parse_options.insert(Options::ENABLE_TABLES);
     md_parse_options.insert(Options::ENABLE_FOOTNOTES);
@@ -59,7 +56,7 @@ pub fn parse(
         })
         .collect();
     Ok(MultiChoiceMultiCorrectContext {
-        stem_path,
+        path,
         truth_removed_html,
         truth_html,
         truth_values,

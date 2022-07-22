@@ -27,7 +27,7 @@ pub struct IndexContext {
 
 #[derive(Serialize, Debug)]
 pub struct MultiChoiceMultiCorrectContext {
-    stem_path: PathBuf,
+    path: PathBuf,
     truth_removed_html: String,
     truth_html: String,
     truth_values: Vec<bool>,
