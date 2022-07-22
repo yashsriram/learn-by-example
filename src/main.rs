@@ -119,15 +119,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                 path
             };
             print!("generating {:?} for {:?} ... ", html_path, entry.path());
-            let stem_path = {
-                let mut path = PathBuf::new();
-                path.push(&path_rooted_at_questions_dir);
-                path.set_extension("")
-                    .then_some(())
-                    .ok_or(".md extension removal failed")?;
-                path
-            };
-            let mcmc_context = parse(stem_path, md_str)?;
+            let mcmc_context = parse(path_rooted_at_questions_dir.clone(), md_str)?;
             let tera_context = Context::from_serialize(&mcmc_context)?;
             let html_str = tera.render(MCMQ_TEMPLATE, &tera_context)?;
             let html_dir = html_path

@@ -3,9 +3,10 @@
 {% block title %}{{ stem_path }}{% endblock title %}
 
 {% block content %}
+
 <fieldset id="truth_removed">
     <legend>
-        {{ stem_path }}
+        <a href="https://github.com/yashsriram/learn-by-example/tree/main/src/questions/{{ stem_path }}">{{ stem_path }}</a>
     </legend>
 
 {{ truth_removed_html | safe }}
