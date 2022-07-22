@@ -1,12 +1,12 @@
 {% extends "common.tera" %}
 
-{% block title %}{{ stem_path }}{% endblock title %}
+{% block title %}{{ path_rooted_at_questions_dir }}{% endblock title %}
 
 {% block content %}
 
 <fieldset id="truth_removed">
     <legend>
-        <a href="https://github.com/yashsriram/learn-by-example/tree/main/src/questions/{{ stem_path }}">{{ stem_path }}</a>
+        <a href="https://github.com/yashsriram/learn-by-example/tree/main/src/questions/{{ path_rooted_at_questions_dir }}">{{ path_rooted_at_questions_dir }}</a>
     </legend>
 
 {{ truth_removed_html | safe }}
