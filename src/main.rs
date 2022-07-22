@@ -69,37 +69,24 @@ fn main() -> Result<(), Box<dyn Error>> {
                 html_path.push(HTML_INDEX_FILE);
                 html_path
             };
-            print!("generating {:?} for {:?} ... ", html_path, entry.path());
-            let children: Vec<_> = WalkDir::new(entry.path())
-                .min_depth(1)
-                .max_depth(1)
-                .into_iter()
-                .map(|entry| {
-                    let entry = entry.unwrap_or_else(|e| {
-                        eprintln!("walk dir error {}", e);
-                        std::process::exit(1);
-                    });
-                    let stem = entry
-                        .path()
-                        .file_stem()
-                        .unwrap_or_else(|| {
-                            eprintln!("no file stem");
-                            std::process::exit(1);
-                        })
-                        .to_str()
-                        .unwrap_or_else(|| {
-                            eprintln!("os string to str problem");
-                            std::process::exit(1);
-                        })
-                        .into();
-                    let is_file = entry.file_type().is_file();
-                    (is_file, stem)
-                })
-                .collect();
+            let mut children = vec![];
+            for child in WalkDir::new(entry.path()).min_depth(1).max_depth(1) {
+                let child = child?;
+                let stem = child
+                    .path()
+                    .file_stem()
+                    .ok_or("no file stem")?
+                    .to_str()
+                    .ok_or("os string to str problem")?
+                    .into();
+                let is_file = child.file_type().is_file();
+                children.push((is_file, stem));
+            }
             let index_context = IndexContext {
                 id: path_rooted_at_questions_dir,
                 children,
             };
+            print!("generating {:?} for {:?} ... ", html_path, entry.path());
             let tera_context = Context::from_serialize(&index_context)?;
             let html_str = tera.render(INDEX_TEMPLATE, &tera_context)?;
             let html_dir = html_path
@@ -110,6 +97,19 @@ fn main() -> Result<(), Box<dyn Error>> {
             println!("done.");
         } else if entry.file_type().is_file() {
             let md_str = std::fs::read_to_string(entry.path())?;
+            let mut children = vec![];
+            for child in WalkDir::new(entry.path()).min_depth(1).max_depth(1) {
+                let child = child?;
+                let stem: String = child
+                    .path()
+                    .file_stem()
+                    .ok_or("no file stem")?
+                    .to_str()
+                    .ok_or("os string to str problem")?
+                    .into();
+                let is_file = child.file_type().is_file();
+                children.push((is_file, stem));
+            }
             let html_path = {
                 let mut path = PathBuf::from(HTML_OUTPUT_DIR);
                 path.push(&path_rooted_at_questions_dir);
