@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>planning/planning</title>
+    <title>planning/traj-opt</title>
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     <script type="text/javascript">
     window.MathJax = {
@@ -21,19 +21,15 @@
 
 <fieldset id="truth_removed">
     <legend>
-        planning/planning
+        planning/traj-opt
     </legend>
 
-<p>What kind of planners are involved in current shining’s motion planning?</p>
+<p>What kind of planner is Traj Opt?</p>
 <ul>
 <li><input disabled="" type="checkbox"/>
-Traj opt, the global planner.</li>
+Global planner.</li>
 <li><input disabled="" type="checkbox"/>
-Traj opt, the local planner.</li>
-<li><input disabled="" type="checkbox"/>
-Dynamic Window Planner</li>
-<li><input disabled="" type="checkbox"/>
-Elastic bands planner.</li>
+Local planner.</li>
 </ul>
 
 
@@ -47,16 +43,12 @@ Elastic bands planner.</li>
 <h1 id="feedback" hidden></h1>
 
 <div id="truth" hidden>
-    <p>What kind of planners are involved in current shining’s motion planning?</p>
+    <p>What kind of planner is Traj Opt?</p>
 <ul>
 <li><input disabled="" type="checkbox"/>
-Traj opt, the global planner.</li>
+Global planner.</li>
 <li><input disabled="" type="checkbox" checked=""/>
-Traj opt, the local planner.</li>
-<li><input disabled="" type="checkbox"/>
-Dynamic Window Planner</li>
-<li><input disabled="" type="checkbox"/>
-Elastic bands planner.</li>
+Local planner.</li>
 </ul>
 
 </div>
@@ -69,7 +61,7 @@ Elastic bands planner.</li>
 
     init();
 
-    const truth = [false, true, false, false];
+    const truth = [false, true];
 
     function evaluate_answer() {
         const inputs = document.querySelectorAll(`#truth_removed input`);

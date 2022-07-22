@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>test/cicd-software</title>
+    <title>mapping/gen2-sensor-suite</title>
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     <script type="text/javascript">
     window.MathJax = {
@@ -21,19 +21,27 @@
 
 <fieldset id="truth_removed">
     <legend>
-        test/cicd-software
+        mapping/gen2-sensor-suite
     </legend>
 
-<p>What kind of CI/CD is used for shining?</p>
+<p>What kind of sensors are used for creating maps on Gen2 scrubbers?</p>
 <ul>
 <li><input disabled="" type="checkbox"/>
-Github actions</li>
+Slanted lidar.</li>
 <li><input disabled="" type="checkbox"/>
-Jenkins</li>
+Planar lidar.</li>
 <li><input disabled="" type="checkbox"/>
-Graphana</li>
+Front camera.</li>
 <li><input disabled="" type="checkbox"/>
-Logz.io</li>
+Side camera.</li>
+<li><input disabled="" type="checkbox"/>
+Front IFM.</li>
+<li><input disabled="" type="checkbox"/>
+Side IFM.</li>
+<li><input disabled="" type="checkbox"/>
+Odometer.</li>
+<li><input disabled="" type="checkbox"/>
+Gyro.</li>
 </ul>
 
 
@@ -47,16 +55,24 @@ Logz.io</li>
 <h1 id="feedback" hidden></h1>
 
 <div id="truth" hidden>
-    <p>What kind of CI/CD is used for shining?</p>
+    <p>What kind of sensors are used for creating maps on Gen2 scrubbers?</p>
 <ul>
-<li><input disabled="" type="checkbox" checked=""/>
-Github actions</li>
-<li><input disabled="" type="checkbox" checked=""/>
-Jenkins</li>
 <li><input disabled="" type="checkbox"/>
-Graphana</li>
+Slanted lidar.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Planar lidar.</li>
 <li><input disabled="" type="checkbox"/>
-Logz.io</li>
+Front camera.</li>
+<li><input disabled="" type="checkbox"/>
+Side camera.</li>
+<li><input disabled="" type="checkbox"/>
+Front IFM.</li>
+<li><input disabled="" type="checkbox"/>
+Side IFM.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Odometer.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Gyro.</li>
 </ul>
 
 </div>
@@ -69,7 +85,7 @@ Logz.io</li>
 
     init();
 
-    const truth = [true, true, false, false];
+    const truth = [false, true, false, false, false, false, true, true];
 
     function evaluate_answer() {
         const inputs = document.querySelectorAll(`#truth_removed input`);

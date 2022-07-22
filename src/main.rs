@@ -34,6 +34,7 @@ pub struct MultiChoiceMultiCorrectContext {
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
+    let tera = Tera::new(TEMPLATE_GLOB)?;
     let entries: Vec<_> = WalkDir::new(QUESTIONS_DIR).into_iter().collect();
     entries
         .iter()
@@ -54,7 +55,6 @@ fn main() -> Result<(), Box<dyn Error>> {
         })
         .then_some(())
         .ok_or("non dir file or non-md file found")?;
-    let tera = Tera::new(TEMPLATE_GLOB)?;
     std::fs::remove_dir_all(HTML_OUTPUT_DIR)?;
     for entry in entries {
         let path_rooted_at_questions_dir: PathBuf = entry
